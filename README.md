@@ -11,3 +11,7 @@
   * [Aleš Matiášek](matias02@student.vspj.cz)
   * [Lukáš Trnka](trnka08@student.vspj.cz)
   * [Roman Černý](cerny23@student.vspj.cz)
+  
+## Nasazená aplikace
+https://alpha.kts.vspj.cz/~team1/
+
