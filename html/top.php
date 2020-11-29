@@ -7,19 +7,19 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Èasopis<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">ÄŒasopis<span class="sr-only">(current)</span></a>
       </li>
 	  <li class="nav-item">
         <a class="nav-link" href="#">Aktuality</a>
       </li>	  
 	  <li class="nav-item">
-        <a class="nav-link" href="#">Pøíští èísla</a>
+        <a class="nav-link" href="#">PÅ™Ã­Å¡tÃ­ ÄÃ­sla</a>
       </li>	 	  
       <li class="nav-item">
-        <a class="nav-link" href="#">VŠPJ</a>
+        <a class="nav-link" href="#">VÅ PJ</a>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="#">Sponzoøi</a>
+        <a class="nav-link" href="#">SponzoÅ™i</a>
       </li>
 	  <li class="nav-item">
         <a class="nav-link" href="#">Administrace</a>
