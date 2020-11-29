@@ -31,6 +31,6 @@
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
       <button class="btn btn-secondary my-2 my-sm-0" type="submit"> Search </button>
     </form>
-      <a href="conn.php"><button class="btn btn-info" type="submit">Login</button></a>
+      <a href="prihlas.php"><button class="btn btn-info" type="submit">Login</button></a>
   </div>
 </nav>
