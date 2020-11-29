@@ -34,6 +34,7 @@
     <link href="styles.css" rel="stylesheet">
   </head>
   <body>
+  <?php include "top.php"; ?>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
   <a class="navbar-brand" href="#"><img src="logo.jpg"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
