@@ -11,7 +11,7 @@ include 'conn.php';
 <head>
     <META CHARSET="UTF-8">
 <title>prihlaseni</title>
-<link rel="stylesheet" type="text/css" href="./css/styl_login.css">
+<link rel="stylesheet" type="text/css" href="./styl_login.css">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -27,7 +27,7 @@ include 'conn.php';
 <body>
 
 <div class="loginbox">
-<img src="./obr/logo.png" class="logo">
+<img src="./obr/hlava.png" class="logo">
 <h1>PŘIHLÁŠENÍ</h1>
 <form action="conn_uzivatel.php" method="post">
 <p>JMÉNO</p>

@@ -1,3 +1,9 @@
+
+<?php
+ session_start();
+
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -34,8 +40,67 @@
     <link href="styles.css" rel="stylesheet">
   </head>
   <body>
-  <?php include "top.php"; ?>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="#"><img src="logo.jpg"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Časopis<span class="sr-only">(current)</span></a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="#">Aktuality</a>
+      </li>	  
+	  <li class="nav-item">
+        <a class="nav-link" href="#">Příští čísla</a>
+      </li>	 	  
+      <li class="nav-item">
+        <a class="nav-link" href="#">VŠPJ</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="#">Sponzoři</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="#">Administrace</a>
+      </li>
+      
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit"> Search </button>
+    </form>
+    <a href="prihlas.php"> <button class="btn btn-info" type="submit">Login</button>  </a>
+  </div>
+</nav>
+id uctu: <?php echo $_SESSION['id'];?>
+ <br>
+přihlášen jako: <?php echo $_SESSION['username'];?>
+ <br>
+ prava: <?php echo $_SESSION['prava'];?>
+ <br>
+ zmena hesla: <?php echo $_SESSION['zmena'];?>
+
+
+<!--opro změnu hesla po přihlšení -->
+ <?php if( $_SESSION['zmena']=="ANO"){ ?>
+  <script>
+window.location.href="http://zmena.php";
+</script>
+
+ <?php } ?>
+<!--  -->
+
+ 
+ <br>
+<!-- pouze pro admina,sprava uctu-->
+ <?php if( $_SESSION['username']=="admin"){ ?>
+ <a href="sprava_uzivatelu.php"> <button class="btn btn-info" type="submit">admin sprava</button>  </a>
+ <?php } ?>
+<!-- -->
 
 <main role="main" class="container">
 

@@ -1,13 +1,15 @@
 <?php  
- 
+  session_start();
  include 'conn.php';
 
- $query = "SELECT * FROM ma_prava     
- INNER JOIN logos_login
- ON ma_prava.id_login = logos_login.id_login
-INNER JOIN prava
-ON ma_prava.id_prava= prava.id_prava 
- ORDER BY ma_prava.id";
+ //$query = "SELECT * FROM ma_prava     
+// INNER JOIN logos_login
+ //ON ma_prava.id_login = logos_login.id_login
+//INNER JOIN prava
+//ON ma_prava.id_prava= prava.id_prava 
+ //ORDER BY ma_prava.id";
+ $query = "SELECT * FROM ucet
+ ORDER BY id";
  $result = mysqli_query($conn, $query);      
 
  ?>  
@@ -28,7 +30,8 @@ ON ma_prava.id_prava= prava.id_prava
     </head>  
       
     <body>  
-    <a href="pridat_ucet.php"> <button type="button"  name="pridat_ucet"  class="btn btn-primary btn-block">přidat dového uživatele</button> </a>
+    <a href="pridat_ucet.php"> <button type="button"  name="pridat_ucet"  class="btn btn-primary btn-block">přidat nového uživatele</button> </a>
+    <a href="index.php"> <button type="button"   class="btn btn-primary btn-block">HOME PAGE</button> </a>
     <br />            
            <div class="container" style="width:700px;" align="center">  
                 <h3 class="text-center">přehled uživatelu</h3><br />  
@@ -48,10 +51,10 @@ ON ma_prava.id_prava= prava.id_prava
                      <table class="table table-hover">  
                           <tr>  
                                <th><a class="column_sort" id="id" data-order="desc" href="#">ID</a></th>  
-                               <th><a class="column_sort" id="sk_jmeno" data-order="desc" href="#">jmeno</a></th>  
-                               <th><a class="column_sort" id="sk_prijmeni" data-order="desc" href="#">prijmeni</a></th>  
-                               <th><a class="column_sort" id="jmeno" data-order="desc" href="#">login</a></th>       
-                               <th><a class="column_sort" id="typ_uctu" data-order="desc" href="#">prava</a></th>  
+                               <th><a class="column_sort" id="prihlas_jmeno" data-order="desc" href="#">login</a></th>  
+                               <th><a class="column_sort" id="jmeno" data-order="desc" href="#">jmeno</a></th>  
+                               <th><a class="column_sort" id="prijmeni" data-order="desc" href="#">prijmeni</a></th>       
+                               <th><a class="column_sort" id="prava" data-order="desc" href="#">prava</a></th>  
                                  
                           </tr>  
                           <?php  
@@ -60,12 +63,12 @@ ON ma_prava.id_prava= prava.id_prava
                           ?>  
                           <tr>  
                                <td><?php echo $row["id"]; ?></td>  
-                               <td><?php echo $row["sk_jmeno"]; ?></td>  
-                               <td><?php echo $row["sk_prijmeni"]; ?></td>  
+                               <td><?php echo $row["prihlas_jmeno"]; ?></td>  
                                <td><?php echo $row["jmeno"]; ?></td>  
-                               <td><?php echo $row["typ_uctu"]; ?></td>  
+                               <td><?php echo $row["prijmeni"]; ?></td>  
+                               <td><?php echo $row["prava"]; ?></td>  
                                <td>
-                               <a href="detail.php?detail=<?= $row['id']; ?>" class=" badge badge-primary p-2">edit</a> |
+                               <a href="detail.php?detail=<?= $row['id'];?>" class=" badge badge-primary p-2">edit</a> |
                               <a href="ucet.php?delete=<?= $row['id']; ?>" class=" badge badge-danger p-2" onclick="return confirm('Opravdu chcete tento záznam smazat');" >vymaž</a> 
                                </td> 
 
