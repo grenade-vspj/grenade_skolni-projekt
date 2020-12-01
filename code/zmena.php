@@ -24,15 +24,24 @@
     <body>  
 
 
-<h1>zmena heslo pro uzivatele </h1>
+<h1>zmena hesla pro uzivatele </h1>
 id uctu: <?php echo $_SESSION['id'];?>
  <br>
 přihlášen jako: <?php echo $_SESSION['username'];?>
 
+<form action="ucet.php" method="post"  enctype="multipart/form-data">  
+   
+
 <div class="form-group">
 <input type="text" name="heslo"  class="form-control" placeholder="nové heslo">
- </div>
+</div>
 
+ <div class="form-group">
+ <input type="submit" name="prepis" class="btn btn-warning btn-block" value="uloz zmeny">
+ </div>
  
+
+ </form>
+
 </body> 
 </html> 

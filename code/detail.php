@@ -10,8 +10,8 @@
  //$result = mysqli_query($conn, $query);    
  //$row = mysqli_fetch_array($result);
 
-
- $query = "SELECT * FROM ucet WHERE id=?";
+ $id=$_SESSION['id'];
+ $query = "SELECT * FROM ucet WHERE id='$id'";
  $result = mysqli_query($conn, $query);    
  $row = mysqli_fetch_array($result);
  ?>
@@ -32,9 +32,9 @@
     <body>  
 
 
-
-    <form action="ucet.php" method="post"  enctype="multipart/form-data">  
+<form action="ucet.php" method="post"  enctype="multipart/form-data">  
     <div class="form-group">
+    
     jmeno
 <input type="text" name="jmeno" value="<?php echo $row[3]; ?>" class="form-control" placeholder="jméno">
  </div> 
@@ -45,7 +45,7 @@ prijmeni
 
 login
  <div class="form-group">
-<input type="text" name="prihlas_jmeno" value="<?php echo $row[1]; ?>" class="form-control" placeholder="login">
+<input type="text" name="prihlasjmeno" value="<?php echo $row[1]; ?>" class="form-control" placeholder="login">
  </div>
 
 heslo
@@ -84,9 +84,9 @@ prava
 
 změna hesla po přilaseni
 <div class="form-group">
- <select name=zmena_hesla   class="form-control">
-  <option value="ANO">ANO</option>
-  <option value="NE">NE</option>
+ <select name=zmenahesla   class="form-control">
+  <option value="ANO">NE</option>
+  <option value="NE">ANO</option>
 </select>
 </div>
 

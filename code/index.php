@@ -7,6 +7,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+ 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -40,6 +41,20 @@
     <link href="styles.css" rel="stylesheet">
   </head>
   <body>
+
+
+
+ <!--nucéné příhlášeni -->
+ <?php if( $_SESSION['username']==""){ ?>
+  <script>
+window.location.href="https://alpha.kts.vspj.cz/~team1/grenade/code/prihlas.php";
+</script>
+
+ <?php } ?>
+<!--  -->
+
+
+
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
   <a class="navbar-brand" href="#"><img src="logo.jpg"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,19 +91,23 @@
     <a href="prihlas.php"> <button class="btn btn-info" type="submit">Login</button>  </a>
   </div>
 </nav>
-id uctu: <?php echo $_SESSION['id'];?>
+
+
+<p hidden> id uctu: <?php echo $_SESSION['id'];?>     </p> 
  <br>
 přihlášen jako: <?php echo $_SESSION['username'];?>
  <br>
  prava: <?php echo $_SESSION['prava'];?>
  <br>
- zmena hesla: <?php echo $_SESSION['zmena'];?>
+ <p hidden> zmena hesla: <?php echo $_SESSION['zmena'];?> </p> 
+ <br>
+ <a href="logout.php">ODHLÁSIT</a>
 
 
 <!--opro změnu hesla po přihlšení -->
  <?php if( $_SESSION['zmena']=="ANO"){ ?>
   <script>
-window.location.href="http://zmena.php";
+window.location.href="https://alpha.kts.vspj.cz/~team1/grenade/code/zmena.php";
 </script>
 
  <?php } ?>
