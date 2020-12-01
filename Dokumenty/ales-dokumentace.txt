@@ -1,0 +1,29 @@
+prihlas.php
+přihlašovací formulář slouží k ověření přihlašovacích údajů
+
+conn.php
+slouží k připojení do databáze
+
+conn_ctenar.php
+je připojení na účet s právi čtenář a posléze je přeměřován na index.php
+
+conn_uzivatel.php
+je přesměrován z prihlas.php kde provede test na ověření identity přihlášeného .pokud je vše v pořádku je směrován index.php.
+pokud ne zůstává na tomto formuláři
+
+sprava_uzivatelu.php
+je přehled všech učtu které mají přistup do databáze tento přehled může vidět a editovat pouze admin.
+je možné přidat účty, smazat, editovat.
+
+pridat_ucet.php
+je formulář pro přidávaní nových učtu.
+
+sort.php
+slouží pouze s řazení tabulky sprava_uzivatelu.php
+
+ucet.php
+slouží k mazaní, editaci, přidávání, změny hesla u všech učtu v databázi
+
+zmena.php
+slouží k nucené změně hesla daného učtu, po přihlášení daného učtu dojde k automatickému přesměrování na formulář na změnu hesla.
+Tento krok muže nastavit pouze admin
