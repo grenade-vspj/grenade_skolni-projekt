@@ -1,5 +1,5 @@
 <?php
-require_once('config.php');
+require_once('conn.php');
 
 if (isset($_POST['submit'])) {
 	$file = $_FILES['file'];
@@ -46,21 +46,16 @@ if (isset($_POST['submit'])) {
 
 	// Pokud se vytvořil soubor na serveru, vložit do databáze
 	if ($created === TRUE) {
-		$sql = "SELECT * FROM stav";
-		if ($result = $con->query($sql)) {
-			$row = $result->fetch_assoc();
-			// then to output
-			echo "<p>{$row ['nazev']}</p>";
-		}
-
-		$stmt = $con->prepare("INSERT INTO clanky(id_stav, nazev) VALUES(1, ?)");
+		$stmt = $conn->prepare("INSERT INTO clanky(id_stav, nazev) VALUES(1, ?)");
 		$stmt->bind_param('s', $nazev);
 		$stmt->execute();
 		$id = $stmt->insert_id;
 
-		$stmt = $con->prepare("INSERT INTO verze(id_clanek, cesta) VALUES(?, ?)");
-		$stmt->bind_param('is', $id, $fileDestination);
-		$stmt->execute();
+		if ($id !== null) {
+			$stmt = $conn->prepare("INSERT INTO verze(id_clanek, cesta) VALUES(?, ?)");
+			$stmt->bind_param('is', $id, $fileDestination);
+			$stmt->execute();
+		}
 		$stmt->close();
 	}
 		
