@@ -14,7 +14,7 @@
                 if ($alert != "") {
                     echo 'window.alert("'.$alert.'");';
                 }
-                echo 'window.location.href = "/' . $redirect . '";';
+                echo 'window.location.href = "./' . $redirect . '";';
             ?>
         </script>
     </head>
