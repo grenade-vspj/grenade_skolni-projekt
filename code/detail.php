@@ -1,5 +1,4 @@
-<?php  
- session_start();
+<?php
  include 'conn.php';
 
  //$query = "SELECT * FROM ma_prava     

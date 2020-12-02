@@ -2,8 +2,18 @@
 <?php
  session_start();
 
+$uri = $_SERVER['REQUEST_URI'];
+$protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+if (strpos($url, 'index.php')) {
+    $url = str_replace('index.php', '', $url);
+}
+if (substr($url, -1) !== '/') {
+    $url = $url.'/';
+}
 
 ?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,6 +24,7 @@
     <meta name="author" content="Grenade">
     <meta name="generator" content="">
     <title>LOGOS POLYTECHNIKOS</title>
+    <link rel="shortcut icon" href="obr/favicon.ico" type="image/x-icon">
 
     
 
@@ -42,21 +53,18 @@
   </head>
   <body>
 
-
-
  <!--nucéné příhlášeni -->
- <?php if( $_SESSION['username']==""){ ?>
-  <script>
-window.location.href="https://alpha.kts.vspj.cz/~team1/grenade/code/prihlas.php";
-</script>
-
- <?php } ?>
+ <?php if( $_SESSION['username']=="") {
+   echo '<script>
+            window.location.href="' . $url .'prihlas.php";
+        </script>';
+ } ?>
 <!--  -->
 
 
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="#"><img src="logo.jpg"></a>
+  <a class="navbar-brand" href="#"><img src="obr/logo.jpg" class="nav-logo"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -105,14 +113,25 @@ přihlášen jako: <?php echo $_SESSION['username'];?>
 
 
 <!--opro změnu hesla po přihlšení -->
- <?php if( $_SESSION['zmena']=="ANO"){ ?>
-  <script>
-window.location.href="https://alpha.kts.vspj.cz/~team1/grenade/code/zmena.php";
-</script>
-
- <?php } ?>
+ <?php if( $_SESSION['zmena']=="ANO") {
+     echo '<script>
+            window.location.href="' . $url .'zmena.php";
+          </script>';
+ } ?>
 <!--  -->
 
+ <!-- redirect pro redaktora
+  <?php if($_SESSION['prava']=="redaktor") {
+     header("Location: redaktor.php");
+     die();
+  }
+ ?>
+
+ <!-- redirect pro recenzenta
+  <?php if($_SESSION['prava']=="recenzent"){
+     header("Location: recenzent.php");
+     die(); }
+ ?>
  
  <br>
 <!-- pouze pro admina,sprava uctu-->
@@ -160,5 +179,6 @@ window.location.href="https://alpha.kts.vspj.cz/~team1/grenade/code/zmena.php";
   <div class="container">
     <span class="text-muted">Created by @teamGrenade</span>
   </div>
-</footer>	  
+</footer>
+  </body>
 </html>
