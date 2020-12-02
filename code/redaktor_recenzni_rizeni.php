@@ -52,7 +52,7 @@
             <div class="card">
                 <h5 class="card-header">Odeslat do recenzního řízení</h5>
                 <div class="card-body">
-                    <h5 class="card-title"><?php $clanek['nazev'] ?></h5>
+                    <h5 class="card-title"><?php echo $clanek['nazev'] ?></h5>
                     <div class="row">
                         <div class="col-sm-6">
                             <dl class="row">
