@@ -1,5 +1,6 @@
 <?php
     require "conn.php";
+    require "opravneni.php";
     require "functions.php";
     require "redaktor_private.php";
 

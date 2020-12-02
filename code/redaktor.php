@@ -1,9 +1,11 @@
 <?php 
     require "conn.php";
+    require "opravneni.php";
     require "functions.php";
     require "redaktor_private.php";
 
     $id_login = $_SESSION['id'];
+    $_SESSION['cerstve_prihlaseni']=0;
 ?>
 
 <!doctype html>

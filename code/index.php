@@ -1,6 +1,6 @@
-
 <?php
- session_start();
+require "conn.php";
+require "opravneni.php";
 
 $uri = $_SERVER['REQUEST_URI'];
 $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
@@ -83,7 +83,7 @@ přihlášen jako: <?php echo $_SESSION['username'];?>
 <!--  -->
 
  <!-- redirect pro redaktora
-  <?php if($_SESSION['prava']=="redaktor") {
+  <?php if($_SESSION['prava']=="redaktor" && $_SESSION['cerstve_prihlaseni']==1) {
      header("Location: redaktor.php");
      die();
   }
@@ -144,3 +144,5 @@ přihlášen jako: <?php echo $_SESSION['username'];?>
 </footer>
   </body>
 </html>
+
+<?php $conn -> close(); ?>

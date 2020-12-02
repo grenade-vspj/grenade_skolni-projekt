@@ -38,7 +38,9 @@ if ($num==1){
   $_SESSION['id']=$id; 
   $_SESSION['username']=$name;   
   $_SESSION['prava']=$prava;  
-  $_SESSION['zmena']=$zmena;     
+  $_SESSION['zmena']=$zmena;
+
+  $_SESSION['cerstve_prihlaseni']=1;
 
   header('location:index.php');
 }else {

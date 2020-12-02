@@ -24,6 +24,12 @@
 	  <li class="nav-item">
         <a class="nav-link" href="#">Administrace</a>
       </li>
+      <?php
+        if (ma_opravneni_redaktora()) {
+          echo '<li class="nav-item">
+                    <a class="nav-link" href="./redaktor.php">Redaktor</a>
+                </li>';
+      }?>
       
 
     </ul>
