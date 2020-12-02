@@ -14,16 +14,19 @@
     }
 
     $zprava = '';
-    if(!empty($_POST["akce"]) AND $_POST["akce"] = 'k-recenzi'){
+    $kod_zpravy = '';
+    if(!empty($_POST["akce"]) AND $_POST["akce"] == 'k-recenzi'){
         $recenzent1 = $_POST["id_recenzent_1"];
         $recenzent2 = $_POST["id_recenzent_2"];
         $termin = $_POST["termin"];
 
         if(!empty($recenzent1) && !empty($recenzent2) && !empty($termin)){
             if ($conn->query("UPDATE clanky SET id_stav = 3, termin_recenze = '$termin', id_recenzent1 = '$recenzent1', id_recenzent2 = '$recenzent2', hodnoceni_recenzent1 = NULL, hodnoceni_recenzent2 = NULL WHERE id_clanek = '$id_clanku'")) {
-                $zprava = 'Uspesne odeslano k recenzi.';
+                $zprava = 'Úspěšně odesláno k recenzi';
+                $kod_zpravy = 'success';
             } else {
-                $zprava = 'Chyba - neco se nepovedlo!';
+                $zprava = 'Chyba - něco se nepovedlo!';
+                $kod_zpravy = 'danger';
             }
             $clanek = clanek_podle_id($conn, $id_clanku);
             if (empty($id_clanku) || empty($clanek['id_clanek'])) {
@@ -37,13 +40,6 @@
 
 <!doctype html>
 <html lang="en">
-    <?php
-        if (!empty($zprava)) {
-            echo '<script language="Javascript" type="text/javascript">
-                    window.alert("'.$zprava.'");
-                  </script>';
-        }
-    ?>
     <?php include "head.php" ?>
     <body>
         <?php include "top.php" ?>

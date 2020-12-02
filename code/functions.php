@@ -2,7 +2,7 @@
     function barva_stavu_clanku($id_stav) {
         switch ($id_stav) {
             case 1: // Zadán
-                return 'info';
+                return 'dark'; // 'info'
             case 2: // Stanovení recenzentů
                 return 'secondary';
             case 3: // Recenzní řízení
