@@ -1,6 +1,11 @@
 <?php
 require "conn.php";
 require "opravneni.php";
+require "functions.php";
+//require "redaktor_private.php";
+include "head.php";
+
+
 
 $uri = $_SERVER['REQUEST_URI'];
 $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
@@ -111,8 +116,76 @@ přihlášen jako: <?php echo $_SESSION['username'];?>
     <h2 class="mt-4">Aktuální číslo</h2>
    
     <?php
+    // dotaz na nejnovější článek najdeho po nejvyšího id_clanek
+    // SELECT clanky.*, stav.nazev AS nazev_stav FROM clanky 
+    //INNER JOIN stav ON clanky.id_stav = stav.id  
+    //ORDER BY id_clanek DESC LIMIT 0, 1
 
+    $query = "SELECT clanky.*, stav.nazev AS nazev_stav FROM clanky 
+    INNER JOIN stav ON clanky.id_stav = stav.id 
+    ORDER BY id_clanek DESC LIMIT 0, 1";
+    $result = mysqli_query($conn, $query);     
+    
+    
+
+
+
+      $vypsani = $conn->query("SELECT clanky.*, stav.nazev AS nazev_stav FROM clanky 
+    INNER JOIN stav ON clanky.id_stav = stav.id 
+    ORDER BY id_clanek DESC LIMIT 0, 1");
+    while ($data = $vypsani->fetch_assoc()) {
+      $id = $data['id_clanek'];
+    $clanek = nejnovejsi_verze_clanku($conn, $id);
+        }
     ?>
+
+
+
+
+
+
+  <!--priat seesion respo -->
+  <div class="table-responsive" id="employee_table">  
+                     <table class="table table-hover">  
+                          <tr>  
+                               <th><a class="column_sort" id="id" >ID</a></th>  
+                               <th><a class="column_sort" id="autor" >autor</a></th>  
+                               <th><a class="column_sort" id="nazev" >nazev</a></th>  
+                               <th><a class="column_sort" id="stahnout" >stáhnout</a></th>  
+                          </tr>  
+                          <?php  
+                          while($row = mysqli_fetch_array($result))  
+                          {  
+                          ?>  
+                          <tr>  
+                               <td><?php echo $row["id_clanek"]; ?></td>  
+                               <td><?php echo $row["id_autor"]; ?></td>  
+                               <td><?php echo $row["nazev"]; ?></td>  
+                               <td>
+                    <?php         
+                                 
+            echo '
+            <a target="_blank" href="' . $clanek['cesta'] . '" class="btn btn-secondary btn-sm" data-toggle="tooltip" title="Stáhnout nejnovější verzi článku">
+            <i class="fas fa-download"></i>
+        </a>
+        '
+                            ?>
+                               </td> 
+
+                          </tr>  
+                          <?php  
+                          }  
+                          ?>  
+                     </table>  
+                </div>  
+
+
+
+
+
+
+
+
 
   
  
