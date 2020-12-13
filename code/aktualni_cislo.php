@@ -150,7 +150,7 @@ přihlášen jako: <?php echo $_SESSION['username'];?>
                           <tr>  
                                <th><a class="column_sort" id="id" >ID</a></th>  
                                <th><a class="column_sort" id="autor" >autor</a></th>  
-                               <th><a class="column_sort" id="nazev" >nazev</a></th>  
+                               <th><a class="column_sort" id="nazev" >nazev článku</a></th>  
                                <th><a class="column_sort" id="stahnout" >stáhnout</a></th>  
                           </tr>  
                           <?php  

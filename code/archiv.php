@@ -113,17 +113,15 @@ přihlášen jako: <?php echo $_SESSION['username'];?>
     <h1>LOGOS POLYTECHNIKOS</h1>
     
   </div>
-    <h2 class="mt-4">Aktuální číslo</h2>
+    <h2 class="mt-4">Archiv</h2>
    
-    <?php
-    // dotaz na nejnovější článek najdeho po nejvyšího id_clanek
-    // SELECT clanky.*, stav.nazev AS nazev_stav FROM clanky 
-    //INNER JOIN stav ON clanky.id_stav = stav.id  
-    //ORDER BY id_clanek DESC LIMIT 0, 1
+   
 
+
+
+    <?php
     $query = "SELECT clanky.*, stav.nazev AS nazev_stav FROM clanky 
-    INNER JOIN stav ON clanky.id_stav = stav.id 
-    ORDER BY id_clanek DESC LIMIT 0, 1";
+    INNER JOIN stav ON clanky.id_stav = stav.id ";
     $result = mysqli_query($conn, $query);     
     
     
@@ -131,26 +129,20 @@ přihlášen jako: <?php echo $_SESSION['username'];?>
 
 
       $vypsani = $conn->query("SELECT clanky.*, stav.nazev AS nazev_stav FROM clanky 
-    INNER JOIN stav ON clanky.id_stav = stav.id 
-    ORDER BY id_clanek DESC LIMIT 0, 1");
+    INNER JOIN stav ON clanky.id_stav = stav.id ");
     while ($data = $vypsani->fetch_assoc()) {
       $id = $data['id_clanek'];
     $clanek = nejnovejsi_verze_clanku($conn, $id);
         }
     ?>
 
-
-
-
-
-
-  <!--priat seesion respo -->
-  <div class="table-responsive" id="employee_table">  
+  
+<div class="table-responsive" id="employee_table">  
                      <table class="table table-hover">  
                           <tr>  
                                <th><a class="column_sort" id="id" >ID</a></th>  
                                <th><a class="column_sort" id="autor" >autor</a></th>  
-                               <th><a class="column_sort" id="nazev" >nazev</a></th>  
+                               <th><a class="column_sort" id="nazev" >nazev článku</a></th>  
                                <th><a class="column_sort" id="stahnout" >stáhnout</a></th>  
                           </tr>  
                           <?php  
@@ -178,8 +170,6 @@ přihlášen jako: <?php echo $_SESSION['username'];?>
                           ?>  
                      </table>  
                 </div>  
-
-
 
 
 
