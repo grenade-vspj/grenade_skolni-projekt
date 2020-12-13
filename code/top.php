@@ -27,6 +27,9 @@
       <li class="nav-item">
         <a class="nav-link" href="aktualni_cislo.php">aktualní číslo</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="archiv.php">archiv</a>
+      </li>
       <?php
         if (ma_opravneni_redaktora()) {
           echo '<li class="nav-item">
