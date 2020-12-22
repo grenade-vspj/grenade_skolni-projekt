@@ -1,5 +1,6 @@
 <?php
 include 'conn.php';
+require "kontrola_prihlaseni.php";
 
 if(isset($_POST['add'])){
 
@@ -94,7 +95,7 @@ if(isset($_GET['delete'])){
 
 if(isset($_POST['detail'])){    
     //$id=$_POST['detail'];
-    $id=$_SESSION['id'];
+    $id=$_POST['id'];
     
     $jmeno=$_POST['jmeno'];
     $prijmeni=$_POST['prijmeni']; 
@@ -139,3 +140,5 @@ if(isset($_POST['prepis'])){
   header('location:index.php');
 }
 ?>
+
+<?php $conn -> close(); ?>

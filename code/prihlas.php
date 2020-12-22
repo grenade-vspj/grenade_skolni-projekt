@@ -47,13 +47,6 @@ include 'conn.php';
 </body>
 
 
-
-
-
-
-
-
-
-
-
 </html>
+
+<?php $conn -> close(); ?>

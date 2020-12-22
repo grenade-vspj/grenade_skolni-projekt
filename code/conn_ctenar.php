@@ -30,3 +30,5 @@ header('location:prihlas.php');
 
 
 ?>
+
+<?php $conn -> close(); ?>

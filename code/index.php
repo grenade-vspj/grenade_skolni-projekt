@@ -13,49 +13,37 @@ if (substr($url, -1) !== '/') {
     $url = $url.'/';
 }
 
+ // nucéné příhlášeni
+ if( $_SESSION['username']=="") {
+     header("Location: prihlas.php");
+     die();
+ }
+
+ // pro změnu hesla po přihlášení
+ if( isset($_SESSION['zmena']) && $_SESSION['zmena']=="ANO") {
+     header("Location: zmena.php");
+     die();
+ }
+
+ // redirect pro redaktora
+ if($_SESSION['prava']=="redaktor" && $_SESSION['cerstve_prihlaseni']==1) {
+     header("Location: redaktor.php");
+     die();
+ }
+
+ // redirect pro recenzenta
+  if($_SESSION['prava']=="recenzent" && $_SESSION['cerstve_prihlaseni']==1) {
+     header("Location: recenzent.php");
+     die();
+  }
+
 ?>
 
 <!doctype html>
 <html lang="en">
   <?php include "head.php" ?>
   <body>
-
- <!--nucéné příhlášeni -->
- <?php if( $_SESSION['username']=="") {
-     header("Location: prihlas.php");
-     die();
- } ?>
-<!--  -->
-
     <?php include "top.php" ?>
-
-<p hidden> id uctu: <?php echo isset($_SESSION['id']) ? $_SESSION['id'] : ''; ?>     </p>
- <br>
-přihlášen jako: <?php echo $_SESSION['username'];?>
- <br>
- prava: <?php echo $_SESSION['prava'];?>
- <br>
- <p hidden> zmena hesla: <?php isset($_SESSION['zmena']) ? $_SESSION['zmena'] : ''; ?> </p>
-
-
-<!--opro změnu hesla po přihlšení -->
- <?php if( isset($_SESSION['zmena']) && $_SESSION['zmena']=="ANO") {
-     header("Location: zmena.php");
-     die();
- } ?>
-<!--  -->
-
- <!-- redirect pro redaktora -->
-  <?php if($_SESSION['prava']=="redaktor" && $_SESSION['cerstve_prihlaseni']==1) {
-     header("Location: redaktor.php");
-     die();
-  } ?>
-
- <!-- redirect pro recenzenta -->
-  <?php if($_SESSION['prava']=="recenzent" && $_SESSION['cerstve_prihlaseni']==1) {
-     header("Location: recenzent.php");
-     die();
-  } ?>
 
 <main role="main" class="container">
 

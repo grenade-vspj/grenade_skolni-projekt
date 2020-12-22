@@ -1,5 +1,9 @@
 <?php
- include 'conn.php';
+ require 'conn.php';
+ require "opravneni.php";
+ require "functions.php";
+ require "kontrola_prihlaseni.php";
+ require "admin_private.php";
 
  //$query = "SELECT * FROM ma_prava     
 // INNER JOIN logos_login
@@ -14,26 +18,16 @@
  ?>  
 
 <!DOCTYPE html>  
- <html>  
-      <head>  
-           <title>sprava uzivatelu</title>  
-        <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>   -->
-        <!--      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  -->
-         <!--     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  -->
-         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css" />
-  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
-    </head>  
-      
-    <body>  
+ <html>
+  <?php include "head.php" ?>
+  <body>
+    <?php include "top.php" ?>
+
     <a href="pridat_ucet.php"> <button type="button"  name="pridat_ucet"  class="btn btn-primary btn-block">přidat nového uživatele</button> </a>
     <a href="index.php"> <button type="button"   class="btn btn-primary btn-block">HOME PAGE</button> </a>
-    <br />            
-           <div class="container" style="width:700px;" align="center">  
-                <h3 class="text-center">přehled uživatelu</h3><br />  
+    <br />
+           <div class="container" style="width:700px;" align="center">
+                <h3 class="text-center">Přehled uživatelů</h3><br />
 
 
 
@@ -53,8 +47,8 @@
                                <th><a class="column_sort" id="prihlas_jmeno" data-order="desc" href="#">login</a></th>  
                                <th><a class="column_sort" id="jmeno" data-order="desc" href="#">jmeno</a></th>  
                                <th><a class="column_sort" id="prijmeni" data-order="desc" href="#">prijmeni</a></th>       
-                               <th><a class="column_sort" id="prava" data-order="desc" href="#">prava</a></th>  
-                                 
+                               <th><a class="column_sort" id="prava" data-order="desc" href="#">prava</a></th>
+                               <th></th>
                           </tr>  
                           <?php  
                           while($row = mysqli_fetch_array($result))  
@@ -67,10 +61,9 @@
                                <td><?php echo $row["prijmeni"]; ?></td>  
                                <td><?php echo $row["prava"]; ?></td>  
                                <td>
-                               <a href="detail.php?detail=<?= $row['id'];?>" class=" badge badge-primary p-2">edit</a> |
-                              <a href="ucet.php?delete=<?= $row['id']; ?>" class=" badge badge-danger p-2" onclick="return confirm('Opravdu chcete tento záznam smazat');" >vymaž</a> 
-                               </td> 
-
+                                    <a href="detail.php?detail=<?= $row['id'];?>" class=" badge badge-primary p-2">edit</a> |
+                                    <a href="ucet.php?delete=<?= $row['id']; ?>" class=" badge badge-danger p-2" onclick="return confirm('Opravdu chcete tento záznam smazat?');" >vymaž</a>
+                               </td>
                           </tr>  
                           <?php  
                           }  
@@ -78,9 +71,14 @@
                      </table>  
                 </div>  
            </div>  
-           <br />  
-      </body>  
- </html>  
+           <br />
+        <?php include "footer.php" ?>
+      </body>
+ </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css" />
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
  <script>  
  $(document).ready(function(){  
       $(document).on('click', '.column_sort', function(){  
@@ -109,4 +107,6 @@
            })  
       });  
  });  
- </script>  
+ </script>
+
+<?php $conn -> close(); ?>

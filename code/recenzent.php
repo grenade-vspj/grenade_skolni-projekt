@@ -3,6 +3,7 @@ require "conn.php";
 require "opravneni.php";
 require "functions.php";
 require "kontrola_prihlaseni.php";
+require "recenzent_private.php";
 
 $id_login = $_SESSION['id'];
 $_SESSION['cerstve_prihlaseni']=0;
@@ -18,10 +19,6 @@ $_SESSION['cerstve_prihlaseni']=0;
 
         <div class="starter-template">
             <h1>LOGOS POLYTECHNIKOS</h1>
-            <br>
-            přihlášen jako: <?php echo $_SESSION['username'];?>
-            <br>
-            prava: <?php echo $_SESSION['prava'];?>
 
         </div>
         <h2 class="mt-4 mb-5">Recenzent</h2>

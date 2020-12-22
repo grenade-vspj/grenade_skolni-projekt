@@ -22,7 +22,7 @@
     <main role="main" class="container-fluid">
         <?php include "redaktor_header.php" ?>
 
-        <h2 class="mt-4 mb-5">Redaktor</h2>
+        <h2 class="mb-3">Redaktor</h2>
         <table class="table table-striped table-hover">
             <thead class="thead-dark">
             <tr>

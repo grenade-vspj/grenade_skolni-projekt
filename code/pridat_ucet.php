@@ -1,23 +1,21 @@
 <?php
- include 'conn.php';
+ require 'conn.php';
+ require "opravneni.php";
+ require "functions.php";
+ require "kontrola_prihlaseni.php";
+ require "admin_private.php";
  ?>
 
 
 <!DOCTYPE html>  
- <html>  
-      <head>  
-           <title>pridani noveho uzivatele</title>  
-           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css" />
-  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
-    </head>  
-      
-    <body>  
+ <html>
+    <?php include "head.php" ?>
+    <body>
+        <?php include "top.php" ?>
+        <main role="main" class="container">
+            <h3 class="text-center">Přidat nového uživatele</h3><br/>
 
-    <form action="ucet.php" method="post" enctype="multipart/form-data">  
+    <form action="ucet.php" method="post" enctype="multipart/form-data">
 
     <div class="form-group">
 <input type="text" name="jmeno"  class="form-control" placeholder="jméno">
@@ -49,7 +47,7 @@ prava
 </select>
 </div>
 -->
-prava
+Práva
 <div class="form-group">
  <select name=prava   class="form-control">
   <option value="admin">admin</option>
@@ -62,7 +60,7 @@ prava
 </select>
 </div>
 
-změna hesla po přilaseni
+Změna hesla po přihlášení
 <div class="form-group">
  <select name=zmena_hesla   class="form-control">
   <option value="ANO">ANO</option>
@@ -72,10 +70,12 @@ změna hesla po přilaseni
 
 
 <div class="form-group">
- <input type="submit" name="add" class="btn btn-primary btn-block" value="pridat">
+ <input type="submit" name="add" class="btn btn-primary btn-block" value="Přidat">
  </div>
  </form>
-
-
+        </main>
+        <?php include "footer.php" ?>
     </body>
     </html>
+
+<?php $conn -> close(); ?>

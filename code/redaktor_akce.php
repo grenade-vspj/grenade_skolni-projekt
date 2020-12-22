@@ -2,6 +2,7 @@
     require "conn.php";
     require "opravneni.php";
     require "functions.php";
+    require "kontrola_prihlaseni.php";
     require "redaktor_private.php";
 
     $id_login = $_SESSION['id'];
@@ -45,3 +46,5 @@
     header("Location: redaktor.php");
     exit();
 ?>
+
+<?php $conn -> close(); ?>

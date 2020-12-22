@@ -21,15 +21,14 @@
  ORDER BY ".$_POST["column_name"]." ".$_POST["order"]."";  
  $result = mysqli_query($conn, $query);  
  $output .= '  
- <table class="table table-bordered">  
+ <table class="table table-hover">  
       <tr>  
            <th><a class="column_sort" id="id" data-order="'.$order.'" href="#">ID</a></th>  
            <th><a class="column_sort" id="prihlas_jmeno" data-order="'.$order.'" href="#">login</a></th>  
            <th><a class="column_sort" id="jmeno" data-order="'.$order.'" href="#">jmeno</a></th>  
            <th><a class="column_sort" id="prijmeni" data-order="'.$order.'" href="#">prijmeni</a></th>  
            <th><a class="column_sort" id="prava" data-order="'.$order.'" href="#">prava</a></th>  
-           
-
+           <th></th>
       </tr>  
  ';  
  while($row = mysqli_fetch_array($result))  
@@ -41,12 +40,15 @@
            <td>' . $row["jmeno"] . '</td>  
            <td>' . $row["prijmeni"] . '</td>  
            <td>' . $row["prava"] . '</td>  
-
-            
-         
+           <td>
+              <a href="detail.php?detail='. $row['id'] .'" class=" badge badge-primary p-2">edit</a> |
+              <a href="ucet.php?delete='. $row['id'] .'" class=" badge badge-danger p-2" onclick="return confirm(`Opravdu chcete tento záznam smazat?`);" >vymaž</a> 
+           </td> 
       </tr>  
       ';  
  }  
  $output .= '</table>';  
  echo $output;  
- ?>  
+ ?>
+
+<?php $conn -> close(); ?>

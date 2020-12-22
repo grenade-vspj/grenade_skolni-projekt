@@ -47,14 +47,23 @@
       
 
     </ul>
+
     <form class="form-inline my-2 my-lg-0">
+        <div class="navbar-text mr-3">
+            <span hidden>ID účtu: <?php echo isset($_SESSION['id']) ? $_SESSION['id'] : ''; ?></span>
+            <span class="mr-1">Uživatel: <?php echo isset($_SESSION['username']) ? $_SESSION['username'] : ''; ?></span>
+            <span class="mr-1">/</span>
+            <span>Oprávnění: <?php echo isset($_SESSION['prava']) ? $_SESSION['prava'] : ''; ?></span>
+        </div>
+
         <input class="form-control mr-sm-2" type="text" placeholder="Vyhledat" aria-label="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit"> Vyhledat </button>
+        <button class="btn btn-secondary my-2 my-sm-0 mr-3" type="submit"> Vyhledat </button>
+
         <?php
-            if(je_uzivatel_prihlasen())
-                echo '<a href="logout.php" class="btn btn-warning ml-2">Odhlášení</a>';
-            else
-                echo '<a href="prihlas.php" class="btn btn-info ml-2">Přihlášení</a>';
+        if(je_uzivatel_prihlasen())
+            echo '<a href="logout.php" class="btn btn-warning"><i class="fas fa-sign-out-alt"></i> Odhlášení</a>';
+        else
+            echo '<a href="prihlas.php" class="btn btn-info"><i class="fas fa-sign-in-alt"></i> Přihlášení</a>';
         ?>
     </form>
 

@@ -12,12 +12,6 @@ require "kontrola_prihlaseni.php";
   <body>
     <?php include "top.php" ?>
 
-<p hidden> id uctu: <?php echo $_SESSION['id'];?>     </p> 
- <br>
-přihlášen jako: <?php echo $_SESSION['username'];?>
- <br>
- prava: <?php echo $_SESSION['prava'];?>
-
 <main role="main" class="container">
 
   <div class="starter-template">

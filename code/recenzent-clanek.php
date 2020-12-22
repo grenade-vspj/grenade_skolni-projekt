@@ -3,6 +3,7 @@ require "conn.php";
 require "opravneni.php";
 require "functions.php";
 require "kontrola_prihlaseni.php";
+require "recenzent_private.php";
 
 $id = $_GET["id_clanku"];
 
