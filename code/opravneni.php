@@ -22,4 +22,10 @@
         $opravneni = array("recenzent", "admin");
         return je_uzivatel_prihlasen() && in_array($_SESSION['prava'], $opravneni);
     }
+
+    function ma_opravneni_autora() {
+        $opravneni = array("autor", "admin");
+        return je_uzivatel_prihlasen() && in_array($_SESSION['prava'], $opravneni);
+    }
+
 ?>

@@ -1,5 +1,11 @@
 <?php
-require_once('conn.php');
+require_once 'conn.php';
+require_once 'kontrola_prihlaseni.php';
+require_once 'autor_private.php';
+
+$zprava = '';
+$kod_zpravy = '';
+$id_login = $_SESSION['id'];
 
 if (isset($_POST['submit'])) {
 	$file = $_FILES['file'];
@@ -24,30 +30,36 @@ if (isset($_POST['submit'])) {
 				$fileDestination = 'clanky/'.$nazev.'.'.$fileActualExt;
 
 				if (file_exists($fileDestination)) {
-					echo 'Soubor s timto nazvem jiz existuje.';
+                    $zprava = 'Soubor s tímto názvem již existuje.';
+                    $kod_zpravy = 'danger';
 				} else {
 					if (move_uploaded_file($fileTmpName, $fileDestination)) {
-						echo "Soubor byl uspesne nahran.";
+                        $zprava = 'Soubor byl úspěšně nahrán.';
+                        $kod_zpravy = 'success';
 						$created = TRUE;
 					} else {
-						echo "Soubor se nepodarilo nahrat.";
+                        $zprava = 'Soubor se nepodařilo nahrát.';
+                        $kod_zpravy = 'danger';
 					}
 				}
 
 			} else {
-				echo "Soubor je prilis velky.";
+                $zprava = 'Soubor je příliš velký.';
+                $kod_zpravy = 'danger';
 			}
 		} else {
-			echo "Nelze upload.";
+            $zprava = 'Nelze uploadovat.';
+            $kod_zpravy = 'danger';
 		}
 	} else {
-		echo "Nelze nahrát soubor tohoto typu. Povolene typy jsou pdf, doc, docx.";
+        $zprava = 'Nelze nahrát soubor tohoto typu. Povolené typy jsou pdf, doc, docx.';
+        $kod_zpravy = 'danger';
 	}
 
 	// Pokud se vytvořil soubor na serveru, vložit do databáze
 	if ($created === TRUE) {
-		$stmt = $conn->prepare("INSERT INTO clanky(id_stav, nazev) VALUES(1, ?)");
-		$stmt->bind_param('s', $nazev);
+		$stmt = $conn->prepare("INSERT INTO clanky(id_autor, id_stav, nazev) VALUES(? , 1, ?)");
+		$stmt->bind_param('is', $id_login, $nazev);
 		$stmt->execute();
 		$id = $stmt->insert_id;
 
@@ -61,7 +73,31 @@ if (isset($_POST['submit'])) {
 		
 }
 ?>
+
 <!DOCTYPE html>
-<html>
-<p>pepa</p>
+<html lang="en">
+    <?php include "head.php" ?>
+    <body>
+        <?php include "top.php" ?>
+
+        <main role="main" class="container-fluid">
+
+            <div class="starter-template">
+
+                <?php if(!empty($zprava)){ ?>
+                    <div class="alert alert-<?php echo $kod_zpravy; ?> alert-dismissible text-center">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <b> <?php echo $zprava; ?> </b>
+                    </div>
+                <?php } $zprava = ''; $kod_zpravy = ''; ?>
+
+                <a href="autor.php" class="btn btn-secondary">Zpět</a>
+            </div>
+
+        </main>
+
+        <?php include "footer.php" ?>
+    </body>
 </html>
+
+<?php $conn -> close(); ?>

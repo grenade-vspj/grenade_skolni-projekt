@@ -1,3 +1,8 @@
+<?php
+    require_once "opravneni.php";
+    require_once "functions.php";
+?>
+
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
   <a class="navbar-brand" href="#"><img src="obr/logo.jpg" class="nav-logo"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +33,11 @@
         <a class="nav-link" href="archiv.php">Archiv</a>
       </li>
       <?php
+        if (ma_opravneni_autora()) {
+            echo '<li class="nav-item '. aktivni_zalozka('autor.php') .'">
+                    <a class="nav-link" href="./autor.php">Autor</a>
+                </li>';
+        }
         if (ma_opravneni_recenzenta()) {
             echo '<li class="nav-item '. aktivni_zalozka('recenzent.php') .'">
                     <a class="nav-link" href="./recenzent.php">Recenzent</a>
