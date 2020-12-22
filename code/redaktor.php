@@ -1,7 +1,8 @@
-<?php 
+<?php
     require "conn.php";
     require "opravneni.php";
     require "functions.php";
+    require "kontrola_prihlaseni.php";
     require "redaktor_private.php";
 
     $id_login = $_SESSION['id'];
@@ -33,6 +34,7 @@
                 <th>Hodnocení 1</th>
                 <th>Recenzent 2</th>
                 <th>Hodnocení 2</th>
+                <th>Číslo časopisu</th>
                 <th></th>
             </tr>
             </thead>
@@ -52,12 +54,13 @@
                         $je_zamitnuto = $data['id_stav'] == 6;
                         $je_prijato = $data['id_stav'] == 5;
                         $je_vraceno = $data['id_stav'] == 4;
+                        $je_zverejneno = $data['id_stav'] == 7;
 
-                        echo '<tr>
+                        echo '<tr class="'. ($je_zverejneno ? table_barva_stavu_clanku($data['id_stav']) : '') .'">
                                 <td class="' . table_barva_stavu_clanku($data['id_stav']) . '">' . $data['nazev_stav'] . '</td>
                                 <td>' . $data['nazev'] . '</td>
                                 <td data-toggle="tooltip" title="' . $autor['prihlas_jmeno'] . '">' . $autor['jmeno'] . ' ' . $autor['prijmeni'] . '</td>
-                                <td><strong>' . $data['termin_recenze'] . '</strong></td>
+                                <td><b>' . $data['termin_recenze'] . '</b></td>
                                 <td data-toggle="tooltip" title="' . $recenzent_1['prihlas_jmeno'] . '">' . $recenzent_1['jmeno'] . ' ' . $recenzent_1['prijmeni'] . '</td>
                                 <td>
                                     ' . ($je_hodnoceni1 ? '
@@ -80,6 +83,7 @@
                                     </div>
                                     ' : "") . '
                                 </td>
+                                <td><b>' . ' ' . '</b></td>
                                 <td>
                                     <a target="_blank" href="' . $clanek['cesta'] . '" class="btn btn-secondary btn-sm" data-toggle="tooltip" title="Stáhnout nejnovější verzi článku">
                                         <i class="fas fa-download"></i>
@@ -88,15 +92,18 @@
                                         <i class="fas fa-forward"></i>
                                         Recenzní řízení
                                     </a>
-                                    <a href="redaktor_akce.php?id_clanku=' . $id . '&akce=prijmout" class="btn btn-success btn-sm ' . ($je_prijato || !$je_hodnoceni ? 'disabled' : '') . '" data-toggle="tooltip" title="Schválit článek" onclick="return confirm(`Opravdu chcete tento článek schválit?`);">
+                                    <a href="redaktor_akce.php?id_clanku=' . $id . '&akce=prijmout" class="btn btn-success btn-sm ' . ($je_prijato || !$je_hodnoceni || $je_zverejneno ? 'disabled' : '') . '" data-toggle="tooltip" title="Schválit článek" onclick="return confirm(`Opravdu chcete tento článek schválit?`);">
                                         <i class="fas fa-check"></i>
                                     </a>
-                                    <a href="redaktor_akce.php?id_clanku=' . $id . '&akce=doplnit" class="btn btn-warning btn-sm ' . ($je_vraceno || !$je_hodnoceni ? 'disabled' : '') . '" data-toggle="tooltip" title="Vrátit autorovi na doplnění" onclick="return confirm(`Opravdu chcete tento článek vrátit autorovi na doplnění?`);">
+                                    <a href="redaktor_akce.php?id_clanku=' . $id . '&akce=doplnit" class="btn btn-warning btn-sm ' . ($je_vraceno || !$je_hodnoceni || $je_zverejneno ? 'disabled' : '') . '" data-toggle="tooltip" title="Vrátit autorovi na doplnění" onclick="return confirm(`Opravdu chcete tento článek vrátit autorovi na doplnění?`);">
                                         <i class="fas fa-undo"></i>
                                     </a>
-                                    <a href="redaktor_akce.php?id_clanku=' . $id . '&akce=zamitnout" class="btn btn-danger btn-sm ' . ($je_zamitnuto ? 'disabled' : '') . '" data-toggle="tooltip" title="Zamítnout článek" onclick="return confirm(`Opravdu chcete tento článek zamítnout?`);">
+                                    <a href="redaktor_akce.php?id_clanku=' . $id . '&akce=zamitnout" class="btn btn-danger btn-sm ' . ($je_zamitnuto || $je_zverejneno ? 'disabled' : '') . '" data-toggle="tooltip" title="Zamítnout článek" onclick="return confirm(`Opravdu chcete tento článek zamítnout?`);">
                                         <i class="fas fa-ban"></i>
                                     </a>
+                                    <a href="redaktor_akce.php?id_clanku=' . $id . '&akce=zverejnit" class="btn btn-info btn-sm ' . ($je_prijato ? '' : 'disabled') . '" data-toggle="tooltip" title="Zveřejnit článek v časopisu" onclick="return confirm(`Opravdu chcete tento článek zveřejnit do příslušného čísla časopisu?`);">
+                                        <i class="fas fa-share-square"></i>
+                                    </a>                                    
                                 </td>
                             </tr>';
                         echo ' <!-- Modal 1 -->
@@ -111,7 +118,7 @@
                                       <p>' . $data['hodnoceni_recenzent1'] . '</p>
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-danger" data-dismiss="modal">Zavřít</button>
                                     </div>  
                                 </div>
                               </div>
@@ -128,7 +135,7 @@
                                       <p>' . $data['hodnoceni_recenzent2'] . '</p>
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-danger" data-dismiss="modal">Zavřít</button>
                                     </div>  
                                 </div>
                               </div>

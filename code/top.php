@@ -6,8 +6,8 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="./index.php">Časopis<span class="sr-only">(current)</span></a>
+      <li class="nav-item <?php echo aktivni_zalozka('index.php'); ?>">
+        <a class="nav-link" href="./index.php">Časopis</a>
       </li>
 	  <li class="nav-item">
         <a class="nav-link" href="#">Aktuality</a>
@@ -21,21 +21,29 @@
 	  <li class="nav-item">
         <a class="nav-link" href="#">Sponzoři</a>
       </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="#">Administrace</a>
+      <li class="nav-item <?php echo aktivni_zalozka('aktualni_cislo.php'); ?>">
+        <a class="nav-link" href="aktualni_cislo.php">Aktualní číslo</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="aktualni_cislo.php">aktualní číslo</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="archiv.php">archiv</a>
+      <li class="nav-item <?php echo aktivni_zalozka('archiv.php'); ?>">
+        <a class="nav-link" href="archiv.php">Archiv</a>
       </li>
       <?php
+        if (ma_opravneni_recenzenta()) {
+            echo '<li class="nav-item '. aktivni_zalozka('recenzent.php') .'">
+                    <a class="nav-link" href="./recenzent.php">Recenzent</a>
+                </li>';
+        }
         if (ma_opravneni_redaktora()) {
-          echo '<li class="nav-item">
+            echo '<li class="nav-item '. aktivni_zalozka('redaktor.php') .'">
                     <a class="nav-link" href="./redaktor.php">Redaktor</a>
                 </li>';
-      }?>
+        }
+        if (ma_opravneni_admina()) {
+            echo '<li class="nav-item '. aktivni_zalozka('sprava_uzivatelu.php') .'">
+                    <a class="nav-link" href="./sprava_uzivatelu.php">Administrace</a>
+                </li>';
+        }
+      ?>
       
 
     </ul>
@@ -43,10 +51,10 @@
         <input class="form-control mr-sm-2" type="text" placeholder="Vyhledat" aria-label="Search">
         <button class="btn btn-secondary my-2 my-sm-0" type="submit"> Vyhledat </button>
         <?php
-        if( $_SESSION['username']=="")
-            echo '<a href="prihlas.php" class="btn btn-info ml-2">Přihlášení</a>';
-        else
-            echo '<a href="logout.php" class="btn btn-warning ml-2">Odhlášení</a>';
+            if(je_uzivatel_prihlasen())
+                echo '<a href="logout.php" class="btn btn-warning ml-2">Odhlášení</a>';
+            else
+                echo '<a href="prihlas.php" class="btn btn-info ml-2">Přihlášení</a>';
         ?>
     </form>
 

@@ -1,106 +1,66 @@
-<?php 
-include "conn.php"; 
+<?php
+require "conn.php";
+require "opravneni.php";
+require "functions.php";
+require "kontrola_prihlaseni.php";
+
+$id_login = $_SESSION['id'];
+$_SESSION['cerstve_prihlaseni']=0;
 ?>
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Grenade">
-    <meta name="generator" content="">
-    <title>LOGOS POLYTECHNIKOS</title>
-
-    
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-	 
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="styles.css" rel="stylesheet">
-  </head>
+  <?php include "head.php" ?>
   <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="#"><img src="logo.jpg"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <?php include "top.php" ?>
 
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Časopis<span class="sr-only">(current)</span></a>
-      </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="#">Aktuality</a>
-      </li>	  
-	  <li class="nav-item">
-        <a class="nav-link" href="#">Příští čísla</a>
-      </li>	 	  
-      <li class="nav-item">
-        <a class="nav-link" href="#">VŠPJ</a>
-      </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="#">Sponzoři</a>
-      </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="#">Administrace</a>
-      </li>
-      
+    <main role="main" class="container">
 
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit"> Search </button>
-	  <button class="btn btn-info" type="submit">Login</button>
-    </form>
-  </div>
-</nav>
+        <div class="starter-template">
+            <h1>LOGOS POLYTECHNIKOS</h1>
+            <br>
+            přihlášen jako: <?php echo $_SESSION['username'];?>
+            <br>
+            prava: <?php echo $_SESSION['prava'];?>
+
+        </div>
+        <h2 class="mt-4 mb-5">Recenzent</h2>
+
+        <div class="row mb-3">
+            <div class="col-md-4 themed-grid-col"><b>Název článku</b></div>
+            <div class="col-md-3 themed-grid-col"><b>Termín hodnocení</b></div>
+            <div class="col-md-2 themed-grid-col"><b>Ohodnoceno</b></div>
+            <div class="col-md-3 themed-grid-col"><b></b></div>
+        </div>
+        <hr>
+
+        <?php
+        //vypsat
+        $vypsani = $conn->query("SELECT * FROM `clanky` WHERE (`id_recenzent1` = '$id_login' OR `id_recenzent2` = '$id_login') AND `id_stav` = 3 ORDER BY `termin_recenze` DESC");
+        while ($data = $vypsani->fetch_assoc()) {
+            $id = $data['id_clanek'];
+            $nazev = $data['nazev'];
+            $termin = $data['termin_recenze'];
+            $je_hodnoceni = false;
+            if (($data['id_recenzent1']==$id_login && !empty($data['hodnoceni_recenzent1'])) || $data['id_recenzent2']==$id_login && !empty($data['hodnoceni_recenzent2'])) {
+                $je_hodnoceni = true;
+            }
+            ?>
+            <div class="row mb-3">
+                <div class="col-md-4 themed-grid-col"><?php echo $nazev; ?></div>
+                <div class="col-md-3 themed-grid-col"><?php echo $termin; ?></div>
+                <div class="col-md-2 themed-grid-col"><?php echo $je_hodnoceni ? '<span class="text-info" style="font-size: 1.5rem;"><i class="fas fa-check-circle"></i></span>' : '' ?></div>
+                <div class="col-md-3 themed-grid-col"><a href="./recenzent-clanek.php?id_clanku=<?php echo $id; ?>" class="btn btn-info">Přečíst a ohnodtotit článek</a></div>
+            </div>
+            <hr>
+        <?php } ?>
 
 
 
-<main role="main" class="container">
+    </main>
 
-  <div class="starter-template">
-    <h1>LOGOS POLYTECHNIKOS</h1>
-    
-  </div>
-    <h2 class="mt-4">Vydané články</h2>
+    <?php include "footer.php" ?>
+  </body>
+</html>
 
-    <div class="row mb-3">
-
-    <?php 
-    //Vypsání článků
-    $vysledek = $mysqli->query("SELECT * FROM `clanky`");
-    while ($data = $vysledek->fetch_assoc()) {
-        $idClanku = $data['id_clanku'];
-        $idAutor = $data['id_autor'];
-        $nazev = $data['nazev'];
-    ?>
-    <div class="col-md-8 themed-grid-col lichy"><?php echo $nazev; ?></div>
-    <div class="col-md-4 themed-grid-col lichy"><button type="button" class="btn btn-info">Otevřít</button></div>
-    <?php } ?>
-
-    </div>
-  </div>
-
-</main><!-- /.container -->
-
+<?php $conn -> close(); ?>

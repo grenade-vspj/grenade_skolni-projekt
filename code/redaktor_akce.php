@@ -34,6 +34,12 @@
             $_SESSION['kod_zpravy'] = 'success';
         }
         $_GET["akce"] = "";
+    } else if ($_GET["akce"] == 'zverejnit') {
+        if ($conn->query("UPDATE clanky SET id_stav = 7 WHERE id_clanek = '$id_clanku'")) {
+            $_SESSION['zprava'] = 'Článek zveřejněn v čísle časopisu '. '' .'.';
+            $_SESSION['kod_zpravy'] = 'success';
+        }
+        $_GET["akce"] = "";
     }
 
     header("Location: redaktor.php");

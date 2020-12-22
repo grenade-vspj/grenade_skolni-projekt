@@ -2,6 +2,7 @@
     require "conn.php";
     require "opravneni.php";
     require "functions.php";
+    require "kontrola_prihlaseni.php";
     require "redaktor_private.php";
 
     $id_login = $_SESSION['id'];
@@ -12,6 +13,7 @@
         header("Location: redaktor.php");
         exit();
     }
+    $je_zverejnen = $clanek['id_stav'] == 7;
 
     $zprava = '';
     $kod_zpravy = '';
@@ -47,7 +49,7 @@
             <?php include "redaktor_header.php" ?>
 
             <div class="card">
-                <h5 class="card-header">Odeslat do recenzního řízení</h5>
+                <h5 class="card-header"><?php echo $je_zverejnen ? 'Recenzní řízení' : 'Odeslat do recenzního řízení'; ?></h5>
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $clanek['nazev'] ?></h5>
                     <div class="row">
@@ -102,7 +104,7 @@
                         </div>
                     </div>
 
-                    <form action="redaktor_recenzni_rizeni.php?id_clanku=<?php echo $clanek['id_clanek'] ?>" method="post">
+                    <form action="redaktor_recenzni_rizeni.php?id_clanku=<?php echo $clanek['id_clanek'] ?>" method="post" <?php echo $je_zverejnen ? 'hidden' : '' ?>>
                         <div class="form-group">
                             <label for="termin">Termín recenze</label>
                             <input type="datetime-local" class="form-control" id="termin" name="termin" required>
@@ -135,6 +137,7 @@
                         <button type="submit" class="btn btn-primary">Odeslat recenzentům</button>
                         <a href="redaktor.php" class="btn btn-secondary">Zpět</a>
                     </form>
+                    <?php echo $je_zverejnen ? '<a href="redaktor.php" class="btn btn-secondary">Zpět</a>' : '' ?>
                 </div>
             </div>
 

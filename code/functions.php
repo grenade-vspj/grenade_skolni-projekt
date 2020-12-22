@@ -13,6 +13,8 @@
                 return 'success';
             case 6: // Zamítnuto
                 return 'danger';
+            case 7: // Zveřejněno
+                return 'info';
             default:
                 return 'default';
         }
@@ -66,4 +68,14 @@
         }
         return $clanek;
     }
+
+    function je_stranka_aktivni($odpovidajici_php_stranka) {
+        $soucasna_stranka = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
+        return $soucasna_stranka == $odpovidajici_php_stranka;
+    }
+
+    function aktivni_zalozka($odpovidajici_php_stranka) {
+        return je_stranka_aktivni($odpovidajici_php_stranka) ? ' active' : '';
+    }
+
 ?>
