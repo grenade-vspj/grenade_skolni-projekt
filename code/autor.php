@@ -38,7 +38,7 @@
 		<label for="cislo"><span style="color:red">*</span><strong> Číslo časopisu:</strong></label>
 		<input type="number" id="cislo" class="form-control" style="width:80px" name="cislo" min="1" max="100" required>
 		<br>
-		<button type="button" id="submit" name="submit" class="btn btn-primary">Nahrát</button>
+		<button type="submit" id="submit" name="submit" class="btn btn-primary">Nahrát</button>
 		<br>
 	</form>
 

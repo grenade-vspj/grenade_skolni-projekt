@@ -55,7 +55,7 @@
     }
 
     function clanek_podle_id($conn, $id_clanek) {
-        $clanek = array("id_clanek"=>"", "id_autor"=>"", "id_stav"=>"", "nazev"=>"", "id_resitel"=>"", "id_recenzent1"=>"", "id_recenzent2"=>"", "hodnoceni_recenzent1"=>"", "hodnoceni_recenzent2"=>"", "termin_recenze"=>"", "nazev_stav"=>"");
+        $clanek = array("id_clanek"=>"", "id_autor"=>"", "id_stav"=>"", "nazev"=>"", "id_resitel"=>"", "id_recenzent1"=>"", "id_recenzent2"=>"", "hodnoceni_recenzent1"=>"", "hodnoceni_recenzent2"=>"", "termin_recenze"=>"", "cislo_casopisu"=>"", "nazev_stav"=>"");
         if ($id_clanek != '') {
             $data = $conn->query("SELECT clanky.*, stav.nazev AS nazev_stav FROM clanky INNER JOIN stav ON clanky.id_stav = stav.id WHERE clanky.id_clanek = " . $id_clanek);
             if (!$data) {

@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
 	$allowed = array('pdf', 'doc', 'docx');
 
 	$kontaktniUdaje = $_POST['udaje'];
-	$cisloClanku = $_POST['cislo'];
+	$cisloCasopisu = $_POST['cislo'];
 	$nazev = $_POST['nazev'];
 	$created = FALSE;
 
@@ -70,8 +70,8 @@ if (isset($_POST['submit'])) {
 
 	// Pokud se vytvořil soubor na serveru, vložit do databáze
 	if ($created === TRUE) {
-		$stmt = $conn->prepare("INSERT INTO clanky(id_autor, id_stav, nazev, cislo_clanku) VALUES(? , 1, ?, ?)");
-		$stmt->bind_param('isi', $id_login, $nazev, $cisloClanku);
+		$stmt = $conn->prepare("INSERT INTO clanky(id_autor, id_stav, nazev, cislo_casopisu) VALUES(? , 1, ?, ?)");
+		$stmt->bind_param('isi', $id_login, $nazev, $cisloCasopisu);
 		$stmt->execute();
 		$id = $stmt->insert_id;
 

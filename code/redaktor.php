@@ -83,7 +83,7 @@
                                     </div>
                                     ' : "") . '
                                 </td>
-                                <td><b>' . ' ' . '</b></td>
+                                <td><b>' . $data['cislo_casopisu'] . '</b></td>
                                 <td>
                                     <a target="_blank" href="' . $clanek['cesta'] . '" class="btn btn-secondary btn-sm" data-toggle="tooltip" title="Stáhnout nejnovější verzi článku">
                                         <i class="fas fa-download"></i>
