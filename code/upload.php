@@ -1,4 +1,14 @@
 <?php
+
+// print_r($_FILES); echo '<br>';
+// echo exec('whoami'); echo '<br>';
+// echo '/home/team1/public_html/grenade/code/clanky - '.(is_writable('/home/team1/public_html/grenade/code/clanky') ? 'ANO' : 'NE'); echo '<br>';
+// var_dump();
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
 require_once 'conn.php';
 require_once 'kontrola_prihlaseni.php';
 require_once 'autor_private.php';
@@ -21,6 +31,8 @@ if (isset($_POST['submit'])) {
 
 	$allowed = array('pdf', 'doc', 'docx');
 
+	$kontaktniUdaje = $_POST['udaje'];
+	$cisloClanku = $_POST['cislo'];
 	$nazev = $_POST['nazev'];
 	$created = FALSE;
 
@@ -58,8 +70,8 @@ if (isset($_POST['submit'])) {
 
 	// Pokud se vytvořil soubor na serveru, vložit do databáze
 	if ($created === TRUE) {
-		$stmt = $conn->prepare("INSERT INTO clanky(id_autor, id_stav, nazev) VALUES(? , 1, ?)");
-		$stmt->bind_param('is', $id_login, $nazev);
+		$stmt = $conn->prepare("INSERT INTO clanky(id_autor, id_stav, nazev, cislo_clanku) VALUES(? , 1, ?, ?)");
+		$stmt->bind_param('isi', $id_login, $nazev, $cisloClanku);
 		$stmt->execute();
 		$id = $stmt->insert_id;
 
