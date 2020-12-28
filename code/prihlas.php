@@ -1,15 +1,14 @@
 <?php
-include 'conn.php'; 
+include 'conn.php';
 ?>
 
 
 
-
-<html>
-    <html lang="cs"></html>
+<!DOCTYPE html>
+<html lang="cs">
 <head>
     <META CHARSET="UTF-8">
-<title>prihlaseni</title>
+<title>Přihlášení</title>
 <link rel="stylesheet" type="text/css" href="./styl_login.css">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -33,12 +32,12 @@ include 'conn.php';
 <input type="text" name="user" class="form-control" placeholder="zadej jméno" required>
 <p>HESLO</p>
 <input type="password" name="password" class="form-control" placeholder="zadej heslo" required>
-<input type="submit" name="ucet" value="VSTUP">
+<input type="submit" name="ucet" value="vstoupit jako člen redakce" class="btn btn-danger btn-block">
 </form>
 
 <!-- ctenar-->
 <form action="conn_ctenar.php" method="post">
-<button type="submit" name="ctenar" value="ctenar" class="btn btn-success btn-block">vstoupit jako ctenar</button>
+<button type="submit" name="ctenar" value="ctenar" class="btn btn-success btn-block">vstoupit jako čtenář </button>
 </form>
 
 

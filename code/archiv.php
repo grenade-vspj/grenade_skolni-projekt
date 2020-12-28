@@ -4,6 +4,10 @@ require "opravneni.php";
 require "functions.php";
 require "kontrola_prihlaseni.php";
 
+if (isset($_GET["stahni_zip"]) && !empty($_GET["stahni_zip"])) {
+    $zip_cislo = $_GET["stahni_zip"];
+    stahni_zip(cesty_k_clankum($conn, $zip_cislo), nazev_zipu_casopisu($zip_cislo));
+}
 ?>
 
 <!doctype html>
@@ -29,71 +33,51 @@ require "kontrola_prihlaseni.php";
                 <th>Autor</th>
   
                 <th>Číslo časopisu</th>
-                <th></th>
+                <th>
+                    <form action="archiv.php" method="get" class="input-group">
+                      <select class="form-control form-control-sm" data-toggle="tooltip" title="Zvolte číslo časopisu ke stažení" style="max-width: 70px; min-width: 50px;" name="stahni_zip">
+                          <?php
+
+                          $cisla_query = $conn->query("SELECT DISTINCT(cislo_casopisu) AS cisla FROM clanky WHERE id_stav = 7 ORDER BY cisla DESC");
+                          $pocet = $cisla_query->num_rows;
+                          while ($cislo = $cisla_query->fetch_assoc()) {
+                              echo '<option value="' . $cislo['cisla'] . '">'. $cislo['cisla'] .'</option>';
+                          }
+                          ?>
+                      </select>
+                      <div class="input-group-append">
+                        <button type="submit" class="btn btn-info btn-sm" data-toggle="tooltip" title="Stáhnout všechny články z čísla časopisu" <?php echo ($pocet > 0 ? '' : 'disabled') ?>>
+                            <i class="fas fa-download"></i>
+                        </button>
+                      </div>
+                    </form>
+                </th>
             </tr>
             </thead>
             <tbody>
                 <?php
                     //vypsat
                     $vypsani = $conn->query("SELECT clanky.*, stav.nazev AS nazev_stav FROM clanky
-                    INNER JOIN stav ON clanky.id_stav = stav.id 
-                  
-                    ORDER BY id_clanek DESC");
+                        INNER JOIN stav ON clanky.id_stav = stav.id 
+                    WHERE  id_stav = 7
+                    ORDER BY cislo_casopisu DESC, id_clanek DESC");
                     while ($data = $vypsani->fetch_assoc()) {
                         $id = $data['id_clanek'];
                         $clanek = nejnovejsi_verze_clanku($conn, $id);
                         $autor = uzivatel_podle_id($conn, $data['id_autor']);
-                        $recenzent_1 = uzivatel_podle_id($conn, $data['id_recenzent1']);
-                        $je_hodnoceni1 = !empty($data['hodnoceni_recenzent1']);
-                        $recenzent_2 = uzivatel_podle_id($conn, $data['id_recenzent2']);
-                        $je_hodnoceni2 = !empty($data['hodnoceni_recenzent2']);
-                        $je_hodnoceni = $je_hodnoceni1 && $je_hodnoceni2;
-                        $je_zamitnuto = $data['id_stav'] == 6;
-                        $je_prijato = $data['id_stav'] == 5;
-                        $je_vraceno = $data['id_stav'] == 4;
-                        $je_zverejneno = $data['id_stav'] == 7;
 
                         echo '
                                 <td>' . $data['nazev'] . '</td>
                                 <td data-toggle="tooltip" title="' . $autor['prihlas_jmeno'] . '">' . $autor['jmeno'] . ' ' . $autor['prijmeni'] . '</td>
                                 <td><b>' . $data['cislo_casopisu'] . '</b></td>
-                               
-                                
-                               
-                               
-                                <td><b>' . ' ' . '</b></td>
                                 <td>
-                                    <a target="_blank" href="' . $clanek['cesta'] . '" class="btn btn-secondary btn-sm" data-toggle="tooltip" title="Stáhnout nejnovější verzi článku">
+                                    <a target="_blank" href="' . $clanek['cesta'] . '" class="btn btn-secondary btn-sm" data-toggle="tooltip" title="Stáhnout článek">
                                         <i class="fas fa-download"></i>
                                     </a>
                                    
                                                      
                                 </td>
                             </tr>';
-                        echo ' <!-- Modal 1 -->
-                            <div class="modal fade" id="modal1-' . $id . '">
-                              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                <div class="modal-content">
-                                  -
-                                    
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-danger" data-dismiss="modal">Zavřít</button>
-                                    </div>  
-                                </div>
-                              </div>
-                            </div>
-                             <!-- Modal 2 -->
-                            <div class="modal fade" id="modal2-' . $id . '">
-                              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                <div class="modal-content">
-                                   
-                                   
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-danger" data-dismiss="modal">Zavřít</button>
-                                    </div>  
-                                </div>
-                              </div>
-                            </div>';
                     }
                 ?>
             </tbody>

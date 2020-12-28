@@ -62,6 +62,8 @@
                                 ?></dd>
                                 <dt class="col-sm-4 text-md-right">Stav:</dt>
                                 <dd class="col-sm-8"><?php echo $clanek['nazev_stav']; ?></dd>
+                                <dt class="col-sm-4 text-md-right">Číslo časopisu:</dt>
+                                <dd class="col-sm-8"><?php echo $clanek['cislo_casopisu']; ?></dd>
                                 <dt class="col-sm-4 text-md-right">Termín recenze:</dt>
                                 <dd class="col-sm-8"><?php echo $clanek['termin_recenze']; ?></dd>
                                 <dt class="col-sm-4 text-md-right">Recenzent 1:</dt>

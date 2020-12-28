@@ -4,13 +4,14 @@ padding: 0;
 background-image: url("./obr/log.jpg");
 
 background-size: cover;
-background-position:center;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
 font-family: sans-serif;
 }
 
 .loginbox{
 width: 320px;
-height: 420px;
 background-color: #000000;
 color: #ffffff;
 top: 50%;
@@ -18,7 +19,7 @@ left: 50%;
 position: absolute;
 transform: translate(-50%,-50%);
 box-sizing: border-box;
-padding: 70px 30px;
+padding: 70px 30px 30px 30px;
 }
 
 .logo{
@@ -62,19 +63,8 @@ h1{
     font-size: 16px;
 }
 
-.loginbox input[type="submit"]
+.loginbox input[type="submit"], .loginbox button[type="submit"]
 {
-border: none;
-outline: none;
-height: 40px;
-background: #fb2525;
-color: #ffffff;
 font-size: 18px;
 border-radius: 20px;
-}
-.loginbox input [type="submit"]:hover
-{
-    cursor: pointer;
-    background: #ffc107;
-    color: #000000;
 }
