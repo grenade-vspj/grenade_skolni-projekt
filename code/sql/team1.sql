@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: localhost
--- Vytvořeno: Úte 01. pro 2020, 23:59
+-- Vytvořeno: Stř 30. pro 2020, 05:58
 -- Verze serveru: 8.0.21
 -- Verze PHP: 7.4.13
 
@@ -37,94 +37,22 @@ CREATE TABLE `clanky` (
   `id_recenzent2` int DEFAULT NULL,
   `hodnoceni_recenzent1` text CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci,
   `hodnoceni_recenzent2` text CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci,
-  `termin_recenze` datetime DEFAULT NULL COMMENT 'Termín zpracování recenze článku'
+  `termin_recenze` datetime DEFAULT NULL COMMENT 'Termín zpracování recenze článku',
+  `cislo_casopisu` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci COMMENT='Tabulka článků';
 
---
--- Vypisuji data pro tabulku `clanky`
---
-
-INSERT INTO `clanky` (`id_clanek`, `id_autor`, `id_stav`, `nazev`, `id_resitel`, `id_recenzent1`, `id_recenzent2`, `hodnoceni_recenzent1`, `hodnoceni_recenzent2`, `termin_recenze`) VALUES
-(3, NULL, 1, '104', NULL, 5, 6, 'No jde to', 'Skvělé!', NULL),
-(4, NULL, 1, '105', NULL, 5, 6, 'ok', '', NULL),
-(5, NULL, 1, 'Dod01', NULL, 5, 6, '', '', NULL),
-(6, NULL, 1, 'Dor01', NULL, 5, 6, '', '', NULL),
-(7, NULL, 1, 'Zkouska03', NULL, 5, 6, '', 'Test hodnocení', NULL),
-(8, NULL, 1, 'Pepa91', NULL, NULL, NULL, NULL, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
--- Struktura tabulky `logos_login`
+-- Struktura tabulky `sablony`
 --
 
-CREATE TABLE `logos_login` (
-  `id_login` int NOT NULL,
-  `jmeno` varchar(255) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL,
-  `heslo` varchar(255) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL,
-  `sk_jmeno` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci NOT NULL,
-  `sk_prijmeni` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci NOT NULL,
-  `zmena_hesla` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
-
---
--- Vypisuji data pro tabulku `logos_login`
---
-
-INSERT INTO `logos_login` (`id_login`, `jmeno`, `heslo`, `sk_jmeno`, `sk_prijmeni`, `zmena_hesla`) VALUES
-(1, 'admin', 'admin', 'admin', 'admin', 'NE'),
-(2, 'ctenar', 'ctenar', 'ctenar', 'ctenar', '0'),
-(3, 'test', 'test', 'test', 'test', 'ano'),
-(7, 'bb', 'bb', 'bbb', 'bbb', 'ANO'),
-(8, 'hgnfhn', 'sfgby', 'dfbd', 'ghsn gh', 'ANO'),
-(9, 'qdqwqqwd', '', '', '', 'ANO'),
-(10, 'recenzent1', 'recenzent', 'recenzent', 'recenzent', 'ANO'),
-(11, 'recenzent2', 'recenzent', 'recenzent', 'recenzent', 'ANO');
-
--- --------------------------------------------------------
-
---
--- Struktura tabulky `ma_prava`
---
-
-CREATE TABLE `ma_prava` (
-  `id` int NOT NULL,
-  `id_login` int NOT NULL,
-  `id_prava` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
-
---
--- Vypisuji data pro tabulku `ma_prava`
---
-
-INSERT INTO `ma_prava` (`id`, `id_login`, `id_prava`) VALUES
-(1, 1, 1),
-(2, 2, 2),
-(12, 10, 5);
-
--- --------------------------------------------------------
-
---
--- Struktura tabulky `prava`
---
-
-CREATE TABLE `prava` (
-  `id_prava` int NOT NULL,
-  `typ_uctu` varchar(255) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
-
---
--- Vypisuji data pro tabulku `prava`
---
-
-INSERT INTO `prava` (`id_prava`, `typ_uctu`) VALUES
-(1, 'admin'),
-(3, 'autor'),
-(2, 'ctenar'),
-(5, 'recenzent'),
-(7, 'redakcni_rada'),
-(4, 'redaktor'),
-(6, 'sef_redaktor');
+CREATE TABLE `sablony` (
+  `cislo_casopisu` int NOT NULL,
+  `cesta` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci NOT NULL,
+  `datum` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tisk` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci COMMENT='Šablony čísel časopisů pro tisk';
 
 -- --------------------------------------------------------
 
@@ -147,7 +75,8 @@ INSERT INTO `stav` (`id`, `nazev`) VALUES
 (3, 'Recenzní řízení'),
 (2, 'Stanovení recenzentů'),
 (1, 'Zadán'),
-(6, 'Zamítnuto');
+(6, 'Zamítnuto'),
+(7, 'Zveřejněno');
 
 -- --------------------------------------------------------
 
@@ -175,7 +104,12 @@ INSERT INTO `ucet` (`id`, `prihlas_jmeno`, `heslo`, `jmeno`, `prijmeni`, `prava`
 (3, 'redaktor', 'redaktor', 'Red', 'Aktor', 'redaktor', 'NE'),
 (4, 'pokus', 'pokus', 'pokus', 'pokus', 'ctenar', 'NE'),
 (5, 'recenzent1', 'recenzent1', 'recenzent1', 'recenzent1', 'recenzent', 'NE'),
-(6, 'recenzent2', 'recenzent2', 'recenzent2', 'recenzent2', 'recenzent', 'NE');
+(6, 'recenzent2', 'recenzent2', 'recenzent2', 'recenzent2', 'recenzent', 'NE'),
+(7, 'svobodp', 'svobodp', 'Petr', 'Svoboda', 'recenzent', 'NE'),
+(9, 'autor1', 'autor1', 'Aut', 'Or1', 'autor', 'NE'),
+(10, 'behounekv', 'behounekv', 'Vojta', 'Běhounek', 'recenzent', 'NE'),
+(11, 'sectelyj', 'sectelyj', 'Jan', 'Sečtělý', 'autor', 'NE'),
+(12, 'muzikantj', 'muzikantj', 'Josef', 'Muzikant', 'autor', 'NE');
 
 -- --------------------------------------------------------
 
@@ -191,18 +125,6 @@ CREATE TABLE `verze` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
 
 --
--- Vypisuji data pro tabulku `verze`
---
-
-INSERT INTO `verze` (`id_verze`, `id_clanek`, `cesta`, `datum`) VALUES
-(1, 3, 'clanky/104.docx', '2020-11-28 20:21:46'),
-(2, 4, 'clanky/105.docx', '2020-11-28 20:26:22'),
-(3, 5, 'clanky/Dod01.docx', '2020-11-29 11:09:00'),
-(4, 6, 'clanky/Dor01.docx', '2020-11-29 11:10:30'),
-(5, 7, 'clanky/Zkouska03.docx', '2020-11-29 11:37:38'),
-(14, 8, 'clanky/Pepa91.docx', '2020-12-01 19:42:32');
-
---
 -- Klíče pro exportované tabulky
 --
 
@@ -216,27 +138,10 @@ ALTER TABLE `clanky`
   ADD KEY `ix_clanky_fk_id_stav` (`id_stav`) USING BTREE COMMENT 'Cizí klíč - tabulka stav, sloupec id_stav';
 
 --
--- Klíče pro tabulku `logos_login`
+-- Klíče pro tabulku `sablony`
 --
-ALTER TABLE `logos_login`
-  ADD PRIMARY KEY (`id_login`) USING BTREE COMMENT 'Primární klíč tabulky',
-  ADD UNIQUE KEY `ix_logos_login_uq_jmeno` (`jmeno`) USING BTREE COMMENT 'Alternativní klíč tabulky - nelze evidovat 2 stejné jména - kolidovalo by v případě stejného hesla a nikdo by se nepřihlásil';
-
---
--- Klíče pro tabulku `ma_prava`
---
-ALTER TABLE `ma_prava`
-  ADD PRIMARY KEY (`id`) USING BTREE COMMENT 'Primární klíč tabulky',
-  ADD UNIQUE KEY `ix_ma_prava_uq_id_login_id_prava` (`id_login`,`id_prava`) USING BTREE COMMENT 'Alternativní klíč tabulky - nelze evidovat 2x stejný login se stejnými právy',
-  ADD KEY `ix_ma_prava_fk_id_prava` (`id_prava`) USING BTREE COMMENT 'Cizí klíč - tabulka prava, sloupec id_prava',
-  ADD KEY `ix_ma_prava_fk_id_login` (`id_login`) USING BTREE COMMENT 'Cizí klíč - tabulka logos_login, sloupec id_login';
-
---
--- Klíče pro tabulku `prava`
---
-ALTER TABLE `prava`
-  ADD PRIMARY KEY (`id_prava`) USING BTREE COMMENT 'Primární klíč tabulky',
-  ADD UNIQUE KEY `ix_prava_uq_typ_uctu` (`typ_uctu`) USING BTREE COMMENT 'Alternativní klíč tabulky - nelze evidovat 2 stejné typy účtu';
+ALTER TABLE `sablony`
+  ADD PRIMARY KEY (`cislo_casopisu`);
 
 --
 -- Klíče pro tabulku `stav`
@@ -267,19 +172,7 @@ ALTER TABLE `verze`
 -- AUTO_INCREMENT pro tabulku `clanky`
 --
 ALTER TABLE `clanky`
-  MODIFY `id_clanek` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT pro tabulku `logos_login`
---
-ALTER TABLE `logos_login`
-  MODIFY `id_login` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT pro tabulku `ma_prava`
---
-ALTER TABLE `ma_prava`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_clanek` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pro tabulku `stav`
@@ -291,13 +184,13 @@ ALTER TABLE `stav`
 -- AUTO_INCREMENT pro tabulku `ucet`
 --
 ALTER TABLE `ucet`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pro tabulku `verze`
 --
 ALTER TABLE `verze`
-  MODIFY `id_verze` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_verze` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Omezení pro exportované tabulky
@@ -307,16 +200,9 @@ ALTER TABLE `verze`
 -- Omezení pro tabulku `clanky`
 --
 ALTER TABLE `clanky`
-  ADD CONSTRAINT `ix_clanky_fk_id_autor` FOREIGN KEY (`id_autor`) REFERENCES `logos_login` (`id_login`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `ix_clanky_fk_id_resitel` FOREIGN KEY (`id_resitel`) REFERENCES `logos_login` (`id_login`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `ix_clanky_fk_id_autor` FOREIGN KEY (`id_autor`) REFERENCES `ucet` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `ix_clanky_fk_id_resitel` FOREIGN KEY (`id_resitel`) REFERENCES `ucet` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `ix_clanky_fk_id_stav` FOREIGN KEY (`id_stav`) REFERENCES `stav` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Omezení pro tabulku `ma_prava`
---
-ALTER TABLE `ma_prava`
-  ADD CONSTRAINT `ix_ma_prava_fk_id_login` FOREIGN KEY (`id_login`) REFERENCES `logos_login` (`id_login`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `ix_ma_prava_fk_id_prava` FOREIGN KEY (`id_prava`) REFERENCES `prava` (`id_prava`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Omezení pro tabulku `verze`
