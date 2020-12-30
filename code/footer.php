@@ -1,11 +1,17 @@
 <style>
+    html {
+        height: 100%;
+    }
     body {
-        padding-bottom: 56px;
+        position: relative;
+        padding-bottom: 80px;
+        min-height: 100%;
     }
     footer {
-        position: fixed;
-        width: 100%;
+        position: absolute;
         bottom: 0;
+        left: 0;
+        right: 0;
     }
 </style>
 <footer class="footer mt-auto py-3">

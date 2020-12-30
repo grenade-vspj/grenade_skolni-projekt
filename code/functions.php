@@ -69,6 +69,21 @@
         return $clanek;
     }
 
+    function sablona_podle_cisla($conn, $cislo_casopisu) {
+        $sablona = array("cislo_casopisu"=>"", "cesta"=>"", "datum"=>"", "tisk"=>"");
+        if ($cislo_casopisu != '') {
+            $data = $conn->query("SELECT sablony.* FROM sablony WHERE sablony.cislo_casopisu = " . $cislo_casopisu);
+            if (!$data) {
+                trigger_error('Invalid query: ' . $conn->error);
+            } else {
+                if ($data->num_rows > 0) {
+                    $sablona = $data->fetch_assoc();
+                }
+            }
+        }
+        return $sablona;
+    }
+
     function clanky_podle_cisla_casopisu($conn, $cislo_casopisu) {
         $clanek = array("id_clanek"=>"", "id_autor"=>"", "id_stav"=>"", "nazev"=>"", "id_resitel"=>"", "id_recenzent1"=>"", "id_recenzent2"=>"", "hodnoceni_recenzent1"=>"", "hodnoceni_recenzent2"=>"", "termin_recenze"=>"", "cislo_casopisu"=>"", "nazev_stav"=>"");
         $clanky = array();
@@ -87,6 +102,23 @@
             }
         }
         return $clanky;
+    }
+
+    function jmeno_souboru_z_cesty($cesta) {
+        return substr($cesta,strrpos($cesta,"/")+1);
+    }
+
+    function url_aktualni_stranky() {
+        $uri = $_SERVER['REQUEST_URI'];
+        $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        return $url;
+    }
+
+    function url_aktualniho_adresare() {
+        $stranka = url_aktualni_stranky();
+        $url = substr($stranka, 0, strrpos($stranka,"/")+1);
+        return $url;
     }
 
     function je_stranka_aktivni($odpovidajici_php_stranka) {

@@ -3,7 +3,7 @@
     require_once "functions.php";
 ?>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <a class="navbar-brand" href="#"><img src="obr/logo.jpg" class="nav-logo"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -16,10 +16,10 @@
       </li>
 	  <li class="nav-item">
         <a class="nav-link" href="#">Aktuality</a>
-      </li>	  
+      </li>
 	  <li class="nav-item">
         <a class="nav-link" href="#">Příští čísla</a>
-      </li>	 	  
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="#">VŠPJ</a>
       </li>

@@ -33,7 +33,7 @@
 		<br>
 		<label for="file"><span style="color:red">*</span><strong> Cesta k souboru:</strong></label>
 		<br>
-		<input type="file" name="file" required></button>
+		<input type="file" name="file" required/>
 		<br><br>
 		<label for="cislo"><span style="color:red">*</span><strong> Číslo časopisu:</strong></label>
 		<input type="number" id="cislo" class="form-control" style="width:80px" name="cislo" min="1" max="100" required>

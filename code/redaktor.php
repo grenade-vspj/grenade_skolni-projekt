@@ -41,8 +41,7 @@
         <?php include "redaktor_header.php" ?>
 
         <h2 class="mb-n4 text-center">Redaktor</h2>
-
-        <ul class="nav nav-tabs" id="tabs-redaktor" role="tablist" style="margin-bottom: 1rem;">
+        <ul class="nav nav-tabs" id="tabs-redaktor" role="tablist">
             <li class="nav-item">
                 <a class="nav-link <?= ($isTabClanky ? 'active' : '') ?>" id="clanky-tab" data-toggle="tab" href="#clanky-content" role="tab" aria-controls="clanky-content" aria-selected="true">Články</a>
             </li>
@@ -51,8 +50,8 @@
             </li>
         </ul>
 
-        <div class="tab-content" id="tabs-redaktor-content">
-            <div class="tab-pane container-fluid fade show <?= ($isTabClanky ? 'active' : '') ?>" id="clanky-content" role="tabpanel" aria-labelledby="clanky-tab">
+        <div class="tab-content pt-3 pb-2 pl-2 pr-2" id="tabs-redaktor-content" style="box-shadow: 0px 10px 5px -5px lightgrey; border-bottom: 1px solid #dee2e6; border-left: 1px solid #dee2e6; border-right: 1px solid #dee2e6;">
+            <div class="tab-pane fade show <?= ($isTabClanky ? 'active' : '') ?>" id="clanky-content" role="tabpanel" aria-labelledby="clanky-tab">
                 <table class="table table-striped table-hover">
                     <thead class="thead-dark">
                     <tr>
@@ -227,7 +226,7 @@
                 </table>
             </div>
 
-            <div class="tab-pane container-fluid fade <?= ($isTabCisla ? 'show active' : '') ?>" id="cisla-content" role="tabpanel" aria-labelledby="cisla-tab">
+            <div class="tab-pane fade <?= ($isTabCisla ? 'show active' : '') ?>" id="cisla-content" role="tabpanel" aria-labelledby="cisla-tab">
                 <table class="table table-striped table-hover">
                     <thead class="thead-dark">
                     <tr>
@@ -237,8 +236,6 @@
                         <th>Přijatých článků</th>
                         <th>Zamítnutých článků</th>
                         <th>Všech článků</th>
-                        <th></th>
-                        <th></th>
                         <th></th>
                     </tr>
                     </thead>
@@ -305,17 +302,25 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <a href="redaktor_akce.php?cislo_casopisu=' . $cislo_c . '&akce=zverejnit&tab=cisla-content" 
-                                        class="btn btn-info btn-sm ' . ($je_zverejneno ? 'disabled invisible' : '') . ' '. ($prijatych > 0 ? '' : 'disabled') .'" 
-                                        data-toggle="tooltip" 
-                                        title="Zveřejnit všechny přijaté články v čísle časopisu" 
-                                        onclick="return confirm(`'. ($je_pripraveno ? 'Opravdu chcete číslo časopisu zveřejnit?' : 'Některé články ve vybraném čísle ještě nejsou přijaté, opravdu chcete toto číslo časopisu zveřejnit? Články, které nejsou přijaté, nebudou moci být zveřejněny.') .'`);
-                                    ">
-                                        <i class="fas fa-share-square"></i>&nbsp;Zveřejnit
-                                    </a>
+                                    '. ($je_zverejneno ? '
+                                        <a href="redaktor_sablona.php?cislo_casopisu=' . $cislo_c . '" 
+                                            class="btn btn-primary btn-sm" 
+                                            data-toggle="tooltip" 
+                                            title="Tisková šablona pro vydavatele" 
+                                        ">
+                                            <i class="fas fa-newspaper"></i>&nbsp;Tisková šablona
+                                        </a>
+                                    ' : ' 
+                                        <a href="redaktor_akce.php?cislo_casopisu=' . $cislo_c . '&akce=zverejnit&tab=cisla-content" 
+                                            class="btn btn-info btn-sm '. ($prijatych > 0 ? '' : 'disabled') .'" 
+                                            data-toggle="tooltip" 
+                                            title="Zveřejnit všechny přijaté články v čísle časopisu" 
+                                            onclick="return confirm(`'. ($je_pripraveno ? 'Opravdu chcete číslo časopisu zveřejnit?' : 'Některé články ve vybraném čísle ještě nejsou přijaté, opravdu chcete toto číslo časopisu zveřejnit? Články, které nejsou přijaté, nebudou moci být zveřejněny.') .'`);
+                                        ">
+                                            <i class="fas fa-share-square"></i>&nbsp;Zveřejnit
+                                        </a>
+                                    ') .'
                                 </td>
-                                <td></td>
-                                <td></td>
                             </tr>';
                     }
                     ?>
