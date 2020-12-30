@@ -73,62 +73,13 @@ if (substr($url, -1) !== '/') {
       <p>Pokud rozsah doručených příspěvků překročí kapacitu příslušného vydání, bude přijímání příspěvků ukončeno před uvedeným termínem.</p>
       <p>Adresa pro odesílání příspěvků:&nbsp;<em>logos&#x40;vspj.cz <br /></em>Kontaktní osoba: Bc. Zuzana Mafková: <a href="mai&#x6C;&#x74;&#x6F;&#x3A;zuzana.mafkova&#x40;vspj.cz">zuzana.mafkova&#x40;vspj.cz</a></p>
       <p>Adresa nakladatele: Vysoká škola polytechnická Jihlava, redakce LOGOS POLYTECHNIKOS, Tolstého 1556/16, 586 01 Jihlava<br /><br /><br /><strong>ISSN 2464-7551 (Online)</strong><br /><br /><em>Registrace MK ČR E 19390 – pro čísla z let 2010 až 2018 (vydávání tištěné verze časopisu bylo ukončeno). </em><br /><em>ISSN 1804-3682 (Print)&nbsp;– pro čísla z let 2010 až 2018 (vydávání tištěné verze časopisu bylo ukončeno).</em></p>
-      <h6>Šéfredaktor</h6>
-      <p>doc. Ing. Zdeněk Horák, Ph.D. (Vysoká škola polytechnická Jihlava)</p>
-      <h5>Redakční rada</h5>
-      <p>prof. PhDr. RNDr. Martin Boltižiar, PhD. (Univerzita Konštantína Filozofa v&nbsp;Nitre)<br />prof. RNDr. Helena Brožová, CSc. (Česká zemědělská univerzita v&nbsp;Praze)<br />doc. PhDr. Lada Cetlová, PhD. (Vysoká škola polytechnická Jihlava)<br />prof. Mgr. Ing. Martin Dlouhý, Dr. MSc. (Vysoká škola ekonomická v&nbsp;Praze)<br />prof. Ing. Tomáš Dostál, DrSc. (Vysoká škola polytechnická Jihlava)<br />doc. Ing. Jiří Dušek, Ph.D. (Vysoká škola evropských a regionálních studií)<br />doc. RNDr. Petr Gurka, CSc. (Vysoká škola polytechnická Jihlava)<br />Ing. Veronika Hedija, Ph.D. (Vysoká škola polytechnická Jihlava)<br />doc. Ing. Zdeněk Horák, Ph.D. (Vysoká škola polytechnická Jihlava)<br />Ing. Ivica Linderová, PhD. (Vysoká škola polytechnická Jihlava)<br />prof. MUDr. Aleš Roztočil, CSc. (Vysoká škola polytechnická Jihlava)<br />doc. PhDr. David Urban, Ph.D. (Vysoká škola polytechnická Jihlava)<br />doc. Dr. Ing. Jan Voráček, CSc. (Vysoká škola polytechnická Jihlava)<br />RNDr. PaedDr. Ján Veselovský, PhD. (Univerzita Konštantína Filozofa v&nbsp;Nitre)<br />doc. Ing. Libor Žídek, Ph.D. (Masarykova univerzita Brno)</p>
-      <h5>Aktuální ročník/číslo časopisu</h5>
-      <p><a href="http://www.vspj.cz/soubory/download/id/7778">2020/Ročník 11/Číslo 1<br /></a><a href="http://www.vspj.cz/soubory/download/id/7874" title="Logos Polytechnikos 2/2020">2020/Ročník 11/Číslo 2</a></p>
-      <h5></h5>
-      <h5>Archiv</h5>
-      <div>
-      <a href="http://www.vspj.cz/soubory/download/id/7354">2019/Ročník 10/Číslo1</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/7454">2019/Ročník 10/Číslo 2</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/7648" title="Logos Polytechnikos 3/2019">2019/Ročník 10/Číslo 3</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/6942">2018/Ročník 9/Číslo 1</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/6914">2018/Ročník 9/Číslo 2 </a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/7192">2018/Ročník 9/Číslo 3</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/7408">2018/Ročník 9/Číslo 4</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/5966">2017/Ročník 8/Číslo 1</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/6130">2017/Ročník 8/Číslo 2</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/6282">2017/Ročník 8/Číslo 3</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/6564">2017/Ročník 8/Číslo 4</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/5087">2016/Ročník 7/Číslo 1</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/5303">2016/Ročník 7/Číslo 2</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/6027">2016/Ročník 7/Číslo 3</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/5711">2016/Ročník 7/Číslo 4</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/5083">2015/Ročník 6/Číslo 1</a><br/>
-
-      <a href="http://www.vspj.cz/soubory/download/id/5084">2015/Ročník 6/Číslo 2</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/5085">2015/Ročník 6/Číslo 3</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/5086">2015/Ročník 6/Číslo 4</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/5079">2014/Ročník 5/Číslo 1</a><br/>
-
-      <a href="http://www.vspj.cz/soubory/download/id/5080">2014/Ročník 5/Číslo 2</a><br/>
-
-      <a href="http://www.vspj.cz/soubory/download/id/5081">2014/Ročník 5/Číslo 3</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/5082">2014/Ročník 5/Číslo 4</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/5075">2013/Ročník 4/Číslo 1</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/5076">2013/Ročník 4/Číslo 2</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/5077">2013/Ročník 4/Číslo 3</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/5078">2013/Ročník 4/Číslo 4</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/5071">2012/Ročník 3/Číslo 1</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/5072">2012/Ročník 3/Číslo 2</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/5121">2012/Ročník 3/Číslo 3</a><br/>
-      <a href="http://www.vspj.cz/soubory/download/id/5074">2012/Ročník 3/Číslo 4</a><br/>
-      <a href="https://www.vspj.cz/soubory/download/id/5067">2011/Ročník 2/Číslo 1</a><br/>
-      <a href="https://www.vspj.cz/soubory/download/id/5068">2011/Ročník 2/Číslo 2</a><br/>
-      <a href="https://www.vspj.cz/soubory/download/id/5069">2011/Ročník 2/Číslo 3</a><br/>
-      <a href="https://www.vspj.cz/soubory/download/id/5070">2011/Ročník 2/Číslo 4</a><br/>
-      <a href="https://www.vspj.cz/soubory/download/id/5063">2010/Ročník 1/Číslo 1</a><br/>
-      <a href="https://www.vspj.cz/soubory/download/id/5064">2010/Ročník 1/Číslo 2</a><br/>
-      <a href="https://www.vspj.cz/soubory/download/id/5065">2010/Ročník 1/Číslo 3</a><br/>
-      <a href="https://www.vspj.cz/soubory/download/id/5066">2010/Ročník 1/Číslo 4</a><br/>
-      <ul class="page-admin">
-      <li class="autor">Autor : <a href="https://www.vspj.cz/skola/kontakty/detail/zamestnanec/51768">Bc. Zuzana Mafková</a></li>
-
-      </ul>
-          <div>
+      <b>Šéfredaktor</b>
+      doc. Ing. Zdeněk Horák, Ph.D. (Vysoká škola polytechnická Jihlava)<br><br>
+      <b>Redakční rada</b><br />
+      prof. PhDr. RNDr. Martin Boltižiar, PhD. (Univerzita Konštantína Filozofa v&nbsp;Nitre)<br />prof. RNDr. Helena Brožová, CSc. (Česká zemědělská univerzita v&nbsp;Praze)<br />doc. PhDr. Lada Cetlová, PhD. (Vysoká škola polytechnická Jihlava)<br />prof. Mgr. Ing. Martin Dlouhý, Dr. MSc. (Vysoká škola ekonomická v&nbsp;Praze)<br />prof. Ing. Tomáš Dostál, DrSc. (Vysoká škola polytechnická Jihlava)<br />doc. Ing. Jiří Dušek, Ph.D. (Vysoká škola evropských a regionálních studií)<br />doc. RNDr. Petr Gurka, CSc. (Vysoká škola polytechnická Jihlava)<br />Ing. Veronika Hedija, Ph.D. (Vysoká škola polytechnická Jihlava)<br />doc. Ing. Zdeněk Horák, Ph.D. (Vysoká škola polytechnická Jihlava)<br />Ing. Ivica Linderová, PhD. (Vysoká škola polytechnická Jihlava)<br />prof. MUDr. Aleš Roztočil, CSc. (Vysoká škola polytechnická Jihlava)<br />doc. PhDr. David Urban, Ph.D. (Vysoká škola polytechnická Jihlava)<br />doc. Dr. Ing. Jan Voráček, CSc. (Vysoká škola polytechnická Jihlava)<br />RNDr. PaedDr. Ján Veselovský, PhD. (Univerzita Konštantína Filozofa v&nbsp;Nitre)<br />doc. Ing. Libor Žídek, Ph.D. (Masarykova univerzita Brno)</p>
+      <br/>
+      
+          
   </div>
 
 </main>

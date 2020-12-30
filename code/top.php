@@ -14,9 +14,7 @@
       <li class="nav-item <?php echo aktivni_zalozka('index.php'); ?>">
         <a class="nav-link" href="./index.php">Časopis</a>
       </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="#">Aktuality</a>
-      </li>
+
 	  <li class="nav-item">
         <a class="nav-link" href="dalsicisla.php">Příští čísla</a>
       </li>
