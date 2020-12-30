@@ -18,13 +18,13 @@
         <a class="nav-link" href="#">Aktuality</a>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="#">Příští čísla</a>
+        <a class="nav-link" href="dalsicisla.php">Příští čísla</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">VŠPJ</a>
+        <a class="nav-link" href="https://www.vspj.cz/">VŠPJ</a>
       </li>
 	  <li class="nav-item">
-        <a class="nav-link" href="#">Sponzoři</a>
+        <a class="nav-link" href="https://www.vspj.cz/" target="_blank">Sponzoři</a>
       </li>
       <li class="nav-item <?php echo aktivni_zalozka('aktualni_cislo.php'); ?>">
         <a class="nav-link" href="aktualni_cislo.php">Aktualní číslo</a>
