@@ -12,12 +12,12 @@ if(isset($_POST['add'])){
     //$zmena_hesla=$_POST['zmena_hesla'];   
 
 
-    $jmeno=$_POST['jmeno'];
-    $prijmeni=$_POST['prijmeni']; 
-    $login=$_POST['login'];
-    $heslo=$_POST['heslo'];
-    $prava=$_POST['prava'];
-    $zmena_hesla=$_POST['zmena_hesla'];
+    $jmeno=mysqli_real_escape_string($conn, htmlspecialchars($_POST['jmeno']));
+    $prijmeni=mysqli_real_escape_string($conn, htmlspecialchars($_POST['prijmeni']));
+    $login=mysqli_real_escape_string($conn, htmlspecialchars($_POST['login']));
+    $heslo=mysqli_real_escape_string($conn, htmlspecialchars($_POST['heslo']));
+    $prava=mysqli_real_escape_string($conn, htmlspecialchars($_POST['prava']));
+    $zmena_hesla=mysqli_real_escape_string($conn, htmlspecialchars($_POST['zmena_hesla']));
 
    // $query="INSERT INTO logos_login(sk_jmeno,sk_prijmeni,jmeno,heslo,zmena_hesla)
     //VALUES(?,?,?,?,?)";
@@ -95,14 +95,14 @@ if(isset($_GET['delete'])){
 
 if(isset($_POST['detail'])){    
     //$id=$_POST['detail'];
-    $id=$_POST['id'];
+    $id=mysqli_real_escape_string($conn, htmlspecialchars($_POST['id']));
     
-    $jmeno=$_POST['jmeno'];
-    $prijmeni=$_POST['prijmeni']; 
-    $login=$_POST['prihlasjmeno'];
-    $heslo=$_POST['heslo'];
-    $prava=$_POST['prava'];
-    $zmenahesla=$_POST['zmenahesla'];
+    $jmeno=mysqli_real_escape_string($conn, htmlspecialchars($_POST['jmeno']));
+    $prijmeni=mysqli_real_escape_string($conn, htmlspecialchars($_POST['prijmeni']));
+    $login=mysqli_real_escape_string($conn, htmlspecialchars($_POST['prihlasjmeno']));
+    $heslo=mysqli_real_escape_string($conn, htmlspecialchars($_POST['heslo']));
+    $prava=mysqli_real_escape_string($conn, htmlspecialchars($_POST['prava']));
+    $zmenahesla=mysqli_real_escape_string($conn, htmlspecialchars($_POST['zmenahesla']));
 
     $sql="UPDATE ucet 
     SET jmeno='$jmeno',
@@ -124,7 +124,7 @@ if(isset($_POST['detail'])){
 }
 
 if(isset($_POST['prepis'])){
-  $zmena=$_POST['heslo'];
+  $zmena=mysqli_real_escape_string($conn, htmlspecialchars($_POST['heslo']));
   $id=$_SESSION['id'];
   $sql="UPDATE ucet SET heslo='$zmena',
   zmena_hesla='NE' WHERE id='$id'";

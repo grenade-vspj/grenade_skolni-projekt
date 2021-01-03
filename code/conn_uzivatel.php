@@ -2,8 +2,8 @@
 include 'conn.php'; 
 
 
-$name=$_POST['user'];
-$pass=$_POST['password'];
+$name=mysqli_real_escape_string($conn, htmlspecialchars($_POST['user']));
+$pass=mysqli_real_escape_string($conn, htmlspecialchars($_POST['password']));
 
 //$s ="SELECT * FROM ma_prava         stara tabulka
 //INNER JOIN logos_login
