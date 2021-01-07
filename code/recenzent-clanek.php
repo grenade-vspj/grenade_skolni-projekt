@@ -16,7 +16,7 @@ $zprava = '';
 $kod_zpravy = '';
 
 if(!empty($_POST["akce"]) AND $_POST["akce"] = 'hodnoceni'){
-    $hodnoceni_clanku = $_POST["hodnoceni"];
+    $hodnoceni_clanku = mysqli_real_escape_string($conn, htmlspecialchars($_POST["hodnoceni"]));
     $id_recenzenta = $_POST["id_recenzenta"];
     
     $vypsani = $conn->query("SELECT * FROM `clanky` WHERE `id_clanek` = '$id'");

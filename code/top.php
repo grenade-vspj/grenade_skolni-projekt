@@ -15,7 +15,7 @@
         <a class="nav-link" href="./index.php">Časopis</a>
       </li>
 
-	  <li class="nav-item">
+	  <li class="nav-item <?php echo aktivni_zalozka('dalsicisla.php'); ?>">
         <a class="nav-link" href="dalsicisla.php">Příští čísla</a>
       </li>
       <li class="nav-item">
@@ -52,7 +52,7 @@
                 </li>';
         }
       ?>
-      
+
 
     </ul>
 
