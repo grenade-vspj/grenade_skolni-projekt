@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	// session_destroy();
 	$requiredSessionVar = array('vstup','expire');
 	foreach($_SESSION as $key => $value) {
