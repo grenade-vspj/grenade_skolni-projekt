@@ -64,8 +64,8 @@
             <span>Oprávnění: <?php echo isset($_SESSION['prava']) ? $_SESSION['prava'] : ''; ?></span>
         </div>
 
-        <input class="form-control mr-sm-2" type="text" placeholder="Vyhledat" aria-label="Search">
-        <button class="btn btn-secondary my-2 my-sm-0 mr-3" type="submit"> Vyhledat </button>
+<!--        <input class="form-control mr-sm-2" type="text" placeholder="Vyhledat" aria-label="Search">-->
+<!--        <button class="btn btn-secondary my-2 my-sm-0 mr-3" type="submit"> Vyhledat </button>-->
 
         <?php
         if(je_uzivatel_prihlasen())
