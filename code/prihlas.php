@@ -1,5 +1,6 @@
 <?php
 include 'conn.php';
+require "kontrola_vstup.php";
 ?>
 
 

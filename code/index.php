@@ -1,5 +1,6 @@
 <?php
 require "conn.php";
+require "kontrola_vstup.php";
 require "opravneni.php";
 require "functions.php";
 

@@ -1,5 +1,6 @@
 <?php
 require "conn.php";
+require "kontrola_prihlaseni.php";
 require "opravneni.php";
 require "functions.php";
 
@@ -12,30 +13,6 @@ if (strpos($url, 'index.php')) {
 if (substr($url, -1) !== '/') {
     $url = $url.'/';
 }
-
- // nucéné příhlášeni
- if( $_SESSION['username']=="") {
-     header("Location: prihlas.php");
-     die();
- }
-
- // pro změnu hesla po přihlášení
- if( isset($_SESSION['zmena']) && $_SESSION['zmena']=="ANO") {
-     header("Location: zmena.php");
-     die();
- }
-
- // redirect pro redaktora
- if($_SESSION['prava']=="redaktor" && $_SESSION['cerstve_prihlaseni']==1) {
-     header("Location: redaktor.php");
-     die();
- }
-
- // redirect pro recenzenta
-  if($_SESSION['prava']=="recenzent" && $_SESSION['cerstve_prihlaseni']==1) {
-     header("Location: recenzent.php");
-     die();
-  }
 
 ?>
 
