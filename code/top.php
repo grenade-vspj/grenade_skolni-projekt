@@ -30,6 +30,9 @@
       <li class="nav-item <?php echo aktivni_zalozka('archiv.php'); ?>">
         <a class="nav-link" href="archiv.php">Archiv</a>
       </li>
+	  <li class="nav-item <?php echo aktivni_zalozka('faq.php'); ?>">
+        <a class="nav-link" href="faq.php" target="_blank">FAQ</a>
+      </li>
       <?php
         if (ma_opravneni_autora()) {
             echo '<li class="nav-item '. aktivni_zalozka('autor.php') .'">
